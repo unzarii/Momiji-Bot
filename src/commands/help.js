@@ -1,9 +1,9 @@
 module.exports =
 {
-	name: "help",
-	description: "Display a list of commands",
-	execute(client, client_permissions, message, args, Discord)
-	{
+  name: "help",
+  description: "Display a list of commands",
+  execute(client, client_permissions, message, args, Discord)
+  {
     if(client_permissions.has("SEND_MESSAGES"))
     {
       if(client_permissions.has("EMBED_LINKS"))
@@ -23,5 +23,5 @@ module.exports =
         message.channel.send("PLEASE GIVE THIS BOT THE 'EMBED LINKS' PERMISSION!").catch(console.error);
       }
     }
-	}
+  }
 }

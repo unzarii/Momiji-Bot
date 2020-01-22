@@ -1,9 +1,9 @@
 module.exports =
 {
-	name: "say",
-	description: "I'll repeat after you",
-	execute(client, client_permissions, message, args, Discord)
-	{
+  name: "say",
+  description: "I'll repeat after you",
+  execute(client, client_permissions, message, args, Discord)
+  {
     if(client_permissions.has("SEND_MESSAGES"))
     {
       if(args.length !== 0)
@@ -22,5 +22,5 @@ module.exports =
         message.channel.send("I can't say nothing!! (｡•́︿•̀｡)").catch(console.error);
       }
     }
-	}
+  }
 }

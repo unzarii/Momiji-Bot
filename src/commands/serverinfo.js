@@ -1,10 +1,10 @@
 module.exports =
 {
-	name: "serverinfo",
-	description: "Display information about the server",
-	execute(client, client_permissions, message, args, Discord)
-	{
-		if(client_permissions.has("SEND_MESSAGES"))
+  name: "serverinfo",
+  description: "Display information about the server",
+  execute(client, client_permissions, message, args, Discord)
+  {
+    if(client_permissions.has("SEND_MESSAGES"))
     {
       if(client_permissions.has("EMBED_LINKS"))
       {
@@ -26,5 +26,5 @@ module.exports =
         message.channel.send("PLEASE GIVE THIS BOT THE 'EMBED LINKS' PERMISSION!").catch(console.error);
       }
     }
-	}
+  }
 }
