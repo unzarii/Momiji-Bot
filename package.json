@@ -1,0 +1,22 @@
+{
+  "name": "momijibot",
+  "version": "0.0.1",
+  "description": "A cute waifu bot",
+  "main": "index.js",
+  "scripts": {
+	"start": "node src/index.js",
+	"dev": "nodemon src/index.js"
+  },
+  "author": "Oniisama",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "node-opus": "^0.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "nodemonConfig":
+  {
+	"ignore": ["config.json"]
+  }
+}
