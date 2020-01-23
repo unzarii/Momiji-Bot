@@ -10,7 +10,7 @@ module.exports = (Discord, client, message) =>
     //TODO: Maybe add a meme "thank you bot-san" thing here
     return;
   }
-  
+
   //Check whether messages are in a guild or DMs
   if(message.guild === null)
   {
@@ -80,6 +80,39 @@ module.exports = (Discord, client, message) =>
       if(message.mentions.users.has("238858432214597635"))
       {
         message.reply("https://i.imgur.com/iieDV6J.jpg");
+        return;
+      }
+
+      //Responses
+      if(message.content === "i am" || message.content === "im" || message.content === "i'm")
+      {
+        message.channel.send("gay").catch(console.error);
+        return;
+      }
+      else if(message.content === "master chief, mind telling me what you're doing in that mcdonald's?")
+      {
+        message.channel.send("https://cdn.discordapp.com/attachments/250743808990380033/653291560590376961/IMG_20191207_180323.jpg").catch(console.error);
+        return;
+      }
+      else if(message.content === "$dk")
+      {
+        message.channel.send("Donkey Kong").catch(console.error);
+        return;
+      }
+      else if(message.content === "roman")
+      {
+        message.channel.send("https://cdn.discordapp.com/attachments/541428847053242400/663444242143903757/IMG_20200101_220133.jpg").catch(console.error);
+        return;
+      }
+      else if(message.content === "ye :)")
+      {
+        message.channel.send("ye :)").catch(console.error);
+        return;
+      }
+      else if(message.content === "ye (:")
+      {
+        message.channel.send("ye (:").catch(console.error);
+        return;
       }
 
       //haha gay-inator
@@ -133,32 +166,6 @@ module.exports = (Discord, client, message) =>
         }
 
         return;
-      }
-
-      //Responses
-      if(message.content === "i am" || message.content === "im" || message.content === "i'm")
-      {
-        message.channel.send("gay").catch(console.error);
-      }
-      else if(message.content === "master chief, mind telling me what you're doing in that mcdonald's?")
-      {
-        message.channel.send("https://cdn.discordapp.com/attachments/250743808990380033/653291560590376961/IMG_20191207_180323.jpg").catch(console.error);
-      }
-      else if(message.content === "$dk")
-      {
-        message.channel.send("Donkey Kong").catch(console.error);
-      }
-      else if(message.content === "roman")
-      {
-        message.channel.send("https://cdn.discordapp.com/attachments/541428847053242400/663444242143903757/IMG_20200101_220133.jpg").catch(console.error);
-      }
-      else if(message.content === "ye :)")
-      {
-        message.channel.send("ye :)").catch(console.error);
-      }
-      else if(message.content === "ye (:")
-      {
-        message.channel.send("ye (:").catch(console.error);
       }
     }
   }
