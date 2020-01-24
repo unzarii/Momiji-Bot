@@ -1,6 +1,7 @@
 #CONFIG / TRASH
 Invite Bot.url
 config.json
+.env
 
 #DEPENDENCIES
 node_modules

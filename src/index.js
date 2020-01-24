@@ -3,11 +3,16 @@
 
 const fs = require("fs");
 
+//Instantiate the Discord client (the bot)
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
 client.config = require("../config.json");
+
 client.commands = new Discord.Collection();
+
+//Allow environment variables to be accessed (allows the program to load the token via .env)
+require('dotenv').config();
 
 //For each event, load the functionality of the event and listen to it
 fs.readdir("./src/events/", (err, files) =>
@@ -33,10 +38,11 @@ fs.readdir("./src/commands/", (err, files) =>
     {
       return;
     }
-    const command_handler = require(`./commands/${file}`); 
+    const command_handler = require(`./commands/${file}`);
     const command_name = file.split(".")[0];
     client.commands.set(command_name, command_handler);
   });
 });
 
-client.login(client.config.token).catch(console.error);
+//Automatically attempts to login via the token set via .env
+client.login(process.env.TOKEN).catch(console.error);

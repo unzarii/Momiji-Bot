@@ -4,19 +4,25 @@
   "description": "A cute waifu bot",
   "main": "index.js",
   "scripts": {
-	"start": "node src/index.js",
-	"dev": "nodemon src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "author": "Oniisama",
+  "engines": {
+    "node": "10.16.2"
+  },
   "dependencies": {
     "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
     "node-opus": "^0.3.2"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
   },
-  "nodemonConfig":
-  {
-	"ignore": ["config.json"]
+  "nodemonConfig": {
+    "ignore": [
+      "config.json"
+	  ".env"
+    ]
   }
 }
