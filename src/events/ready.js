@@ -16,8 +16,8 @@ module.exports = (Discord, client) =>
 
   //Remind the stupid admin to bump his bots every 4 hours
   setInterval(() => {
-    client.channels.get(client.config.awooo_bump).send(`Don't forget to bump the bots, <@${client.config.owner}> ${faces.getRandom()}`).catch(console.error);
-    client.channels.get(client.config.sm_bump).send(`Don't forget to bump the bots, <@${client.config.owner}> ${faces.getRandom()}`).catch(console.error);
-    client.channels.get(client.config.d_bump).send(`Don't forget to bump the bots, <@${client.config.owner}> ${faces.getRandom()}`).catch(console.error);
+    client.channels.get(client.config.awooo_bump).send(`Don't forget to bump the bots ${faces.getRandom()}`).catch(console.error);
+    client.channels.get(client.config.sm_bump).send(`Don't forget to bump the bots ${faces.getRandom()}`).catch(console.error);
+    client.channels.get(client.config.d_bump).send(`Don't forget to bump the bots ${faces.getRandom()}`).catch(console.error);
   }, 14400000);
 }

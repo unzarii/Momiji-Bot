@@ -30,4 +30,6 @@ Tips:
 - "pm2 log" will display the console log from the bot
 
 # How to host via Windows
-- Run dev.bat (though there is no protection for if the bot crashes)
+- Run dev.bat
+- I tried getting pm2 to work via Windows but I'm either dumb or it's just easier to use nodemon for quick file changes
+- You will need to figure out pm2 yourself or find another way to ensure that the server restarts on crash/startup 
