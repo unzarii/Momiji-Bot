@@ -137,8 +137,8 @@ module.exports = (Discord, client, message) =>
       }
 
       //Dad Joke-inator (reuse chance variables)
-      rand = Math.random() * 100;
-      normal_chance = 25 //25% chance
+      rand = Math.random() * 10;
+      normal_chance = 1 //10% chance
 
       if((rand <= normal_chance))
       {
