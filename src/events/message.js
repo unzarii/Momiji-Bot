@@ -69,53 +69,48 @@ module.exports = (Discord, client, message) =>
       }
     }
   }
-  else //Not a command (in other words, you are entering the meme zone)
+  else //Not a command (in other words, you are entering the DISGUSTING meme zone)
   {
     if(client_permissions.has("SEND_MESSAGES"))
     {
-      //Prepare message.content
-      message.content = message.content.toLowerCase();
+      //Prepare message.content for case insensitive checks
+      const message_lowercase = message.content.toLowerCase();
 
       //Defeat losers
       if(message.mentions.users.has("238858432214597635"))
       {
-        message.reply("https://i.imgur.com/iieDV6J.jpg");
+        message.reply("https://i.imgur.com/iieDV6J.jpg").catch(console.error);;
         return;
       }
 
-      //Responses
-      if(message.content === "i am" || message.content === "im" || message.content === "i'm")
-      {
-        message.channel.send("gay").catch(console.error);
-        return;
-      }
-      else if(message.content === "master chief, mind telling me what you're doing in that mcdonald's?")
+      //TODO: Fix this mess. Or don't, as this is only temporary.
+      if(message_lowercase === "master chief, mind telling me what you're doing in that mcdonald's?")
       {
         message.channel.send("https://cdn.discordapp.com/attachments/250743808990380033/653291560590376961/IMG_20191207_180323.jpg").catch(console.error);
         return;
       }
-      else if(message.content === "$dk")
+      else if(message_lowercase === "$dk")
       {
         message.channel.send("Donkey Kong").catch(console.error);
         return;
       }
-      else if(message.content === "roman")
+      else if(message_lowercase === "roman")
       {
         message.channel.send("https://cdn.discordapp.com/attachments/541428847053242400/663444242143903757/IMG_20200101_220133.jpg").catch(console.error);
         return;
       }
-      else if(message.content === "ye :)")
+      else if(message_lowercase === "ye :)")
       {
         message.channel.send("ye :)").catch(console.error);
         return;
       }
-      else if(message.content === "ye (:")
+      else if(message_lowercase === "ye (:")
       {
         message.channel.send("ye (:").catch(console.error);
         return;
       }
 
-      //haha gay-inator
+      //Haha Gay-inator (these variables will be re-used for the Dad Joke-inator)
       let rand = Math.random() * 100;
       let normal_chance = 0.1; //0.1% chance
 
@@ -124,46 +119,43 @@ module.exports = (Discord, client, message) =>
       {
         if(message.author.id === client.config.owner)
         {
-          message.reply(`I think that you're wonderful and extremely heterosexual ${faces.getRandom()}.`);
+          message.reply(`I think that you're wonderful and extremely heterosexual ${faces.getRandom()}.`).catch(console.error);
           console.log(`Complimented my lovely owner in ${message.guild.name} (${message.guild.id}).`);
         }
         else
         {
-          message.reply("haha gay");
+          message.reply("haha gay").catch(console.error);
           console.log(`Bullied ${message.author.tag} in ${message.guild.name} (${message.guild.id}).`);
         }
 
         return;
       }
 
-      //Dad Joke-inator (reuse chance variables)
+      //Dad Joke-inator (re-use chance variables)
       rand = Math.random() * 10;
       normal_chance = 1 //10% chance
 
+      const im_array = ["i'm", "im", "i am"];
+
+      //Has a 10% chance of responding with a terrible joke
       if((rand <= normal_chance))
       {
-        if(message.content.startsWith("i'm") || message.content.startsWith("im") || message.content.startsWith("i am"))
+        im_array.forEach(im =>
         {
-          let response_content = "";
+          if(message_lowercase.startsWith(im))
+          {
+            //Use message.content instead of message_lowercase in order to retain the capitalisation
+            let response_content = message.content.slice(im.length).trim();
 
-          if(message.content.startsWith("i'm "))
-          {
-            response_content = message.content.substr(4);
+            if(response_content.length != 0)
+            {
+              message.channel.send(`Hello ${response_content}, I'm Momiji ${faces.getRandom()}`).catch(console.error);;
+            }
+            else{
+              message.channel.send("gay").catch(console.error);;
+            }
           }
-          else if(message.content.startsWith("im "))
-          {
-            response_content = message.content.substr(3);
-          }
-          else if(message.content.startsWith("i am "))
-          {
-            response_content = message.content.substr(5);
-          }
-
-          if(response_content.length != 0)
-          {
-            message.channel.send(`Hello ${response_content}, I'm Momiji ${faces.getRandom()}`);
-          }
-        }
+        });
 
         return;
       }
