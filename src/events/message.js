@@ -83,8 +83,15 @@ module.exports = (Discord, client, message) =>
         return;
       }
 
+      const im_array = ["i'm", "im", "i am"];
+
       //TODO: Fix this mess. Or don't, as this is only temporary.
-      if(message_lowercase === "master chief, mind telling me what you're doing in that mcdonald's?")
+      if(im_array.includes(message_lowercase))
+      {
+        message.channel.send("gay").catch(console.error);
+        return;
+      }
+      else if(message_lowercase === "master chief, mind telling me what you're doing in that mcdonald's?")
       {
         message.channel.send("https://cdn.discordapp.com/attachments/250743808990380033/653291560590376961/IMG_20191207_180323.jpg").catch(console.error);
         return;
@@ -135,14 +142,12 @@ module.exports = (Discord, client, message) =>
       rand = Math.random() * 10;
       normal_chance = 1 //10% chance
 
-      const im_array = ["i'm", "im", "i am"];
-
       //Has a 10% chance of responding with a terrible joke
       if((rand <= normal_chance))
       {
         im_array.forEach(im =>
         {
-          if(message_lowercase.startsWith(im))
+          if(message_lowercase.startsWith(im + " "))
           {
             //Use message.content instead of message_lowercase in order to retain the capitalisation
             let response_content = message.content.slice(im.length).trim();
@@ -150,9 +155,6 @@ module.exports = (Discord, client, message) =>
             if(response_content.length != 0)
             {
               message.channel.send(`Hello ${response_content}, I'm Momiji ${faces.getRandom()}`).catch(console.error);;
-            }
-            else{
-              message.channel.send("gay").catch(console.error);;
             }
           }
         });
