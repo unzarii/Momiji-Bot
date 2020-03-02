@@ -116,6 +116,11 @@ module.exports = (Discord, client, message) =>
         message.channel.send("ye (:").catch(console.error);
         return;
       }
+      else if(message_lowercase === "hashbrown" || message_lowercase === "hash brown")
+      {
+        message.channel.send("https://cdn.discordapp.com/attachments/541428847053242400/684164702695325711/03085543-87de-47ab-a4eb-58e7e39d022e-2060x1236.png").catch(console.error);
+        return;
+      }
 
       //Haha Gay-inator (these variables will be re-used for the Dad Joke-inator)
       let rand = Math.random() * 100;
