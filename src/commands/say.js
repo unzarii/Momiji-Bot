@@ -12,9 +12,9 @@ module.exports =
 
         if(client_permissions.has("MANAGE_MESSAGES"))
         {
-          message.delete();
+          message.delete().catch(console.error);;
         }
-        
+
         message.channel.send(output).catch(console.error);
       }
       else

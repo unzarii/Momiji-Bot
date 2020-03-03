@@ -5,6 +5,7 @@ Yet another bot, this time in the theme of a popular Touhou character
 - Node v10.16.2
 - Discord.js v11.5.1
 - Dotenv v8.2.0
+- Moment v2.24.0
 
 For hosting on Linux:
 - pm2 v4.2.3
@@ -32,4 +33,4 @@ Tips:
 # How to host via Windows
 - Run dev.bat
 - I tried getting pm2 to work via Windows but I'm either dumb or it's just easier to use nodemon for quick file changes
-- You will need to figure out pm2 yourself or find another way to ensure that the server restarts on crash/startup 
+- You will need to figure out pm2 yourself or find another way to ensure that the server restarts on crash/startup
