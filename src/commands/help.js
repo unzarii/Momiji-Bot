@@ -12,7 +12,7 @@ module.exports =
           .setColor(0xe92134)
           .setTitle("Help")
           .setThumbnail(message.guild.iconURL)
-          .addField("Useful Commands", "-help\n-ping\n-serverinfo", false)
+          .addField("Useful Commands", "-help\n-ping\n-serverinfo\n-memberinfo", false)
           .addField("Fun Commands", "-awoo\n-headpat\n-say <output>", false)
           .addField("Other", "I also have a 0.1% chance of being *very mean* to you.\nDad jokes enabled, for now.", false)
 
