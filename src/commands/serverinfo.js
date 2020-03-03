@@ -29,6 +29,25 @@ module.exports =
 
         serverAgeString = serverAgeString.join(", ");
 
+        //Calculate how many channels of each type that there are
+        let textChannels = 0;
+        let voiceChannels = 0;
+
+        message.guild.channels.forEach(channel =>
+        {
+          switch(channel.type)
+          {
+            case "text":
+              textChannels++;
+              break;
+            case "voice":
+              voiceChannels++;
+              break;
+            default:
+              console.log("Not a relevant channel");
+          }
+        });
+
         //Construct and send the server info embed
         const server_info = new Discord.RichEmbed()
           .setColor(0xe92134)
@@ -36,9 +55,10 @@ module.exports =
           .setThumbnail(message.guild.iconURL)
           .addField("Server Creation Date:", message.guild.createdAt.toUTCString(), false)
           .addField("Server Age:", serverAgeString, false)
-          .addField("Roles:", message.guild.roles.size, true)
-          .addField("Channels:", message.guild.channels.size, true)
+          .addField("Text Channels:", textChannels, true)
+          .addField("Voice Channels:", voiceChannels, true)
           .addField("Member Count:", message.guild.memberCount, false)
+          .addField("Roles:", message.guild.roles.size, false)
           .addField("Region:", message.guild.region, false)
           .addField("Owner:", message.guild.owner, false)
 
