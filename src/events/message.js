@@ -142,30 +142,6 @@ module.exports = (Discord, client, message) =>
 
         return;
       }
-
-      //Dad Joke-inator (re-use chance variables)
-      rand = Math.random() * 10;
-      normal_chance = 1 //10% chance
-
-      //Has a 10% chance of responding with a terrible joke
-      if((rand <= normal_chance))
-      {
-        im_array.forEach(im =>
-        {
-          if(message_lowercase.startsWith(im + " "))
-          {
-            //Use message.content instead of message_lowercase in order to retain the capitalisation
-            let response_content = message.content.slice(im.length).trim();
-
-            if(response_content.length != 0)
-            {
-              message.channel.send(`Hello ${response_content}, I'm Momiji ${faces.getRandom()}`).catch(console.error);;
-            }
-          }
-        });
-
-        return;
-      }
     }
   }
 }
