@@ -28,7 +28,15 @@ module.exports = (Discord, client) =>
       "Onii-sama?",
       "Nooooo I don't wanna be ignored noooooooooooo",
       "Being ignored is fine actually",
-      "Tag a friend and if they don't bump the bots in five minutes, they owe you an Applie iMac G3/333 (Lime)"
+      "Tag a friend and if they don't bump the bots in five minutes, they owe you an Applie iMac G3/333 (Lime)",
+      "I know you don't like me spamming so much, so why not vent that anger into a furious bump!",
+      "One day I'll be more than just a bump reminder bot",
+      "I see it when you ignore me. I'm watching.",
+      "Did you just click on this channel and *not* bump the bots? ",
+      "Helloooo please bump the bots",
+      "I can't bump the bots so I suuure wish someone else could help me with that",
+      "Owo wAnWAn buMp tHe bOts PweAse >:3ccc",
+      "Existence is suffering"
     ];
 
     var rand = Math.random() * one_liners.length;
@@ -42,16 +50,22 @@ module.exports = (Discord, client) =>
   //Set the presence initially
   client.user.setPresence({ status: "playing", game: { name: "awooo | -help" } }).catch(console.error);;
 
-  //Set it again every hour, just in case (as it seems to disappear after a while)
-  setInterval(() => {
-    client.user.setPresence({ status: "playing", game: { name: "awooo | -help" } });
-  }, 3600000);
+  //Prevent the intervals from duplicating if the ready event is somehow fired more than once
+  if(client.bump_intervals_started === false)
+  {
+    //Set the presence again every hour, just in case (as it seems to disappear after a while)
+    setInterval(() => {
+      client.user.setPresence({ status: "playing", game: { name: "awooo | -help" } });
+    }, 3600000);
 
-  //Remind the stupid admin to bump his bots every 4 hours
-  setInterval(() => {
+    //Remind the stupid admin to bump his bots every 4 hours
+    setInterval(() => {
     client.channels.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
     client.channels.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
     client.channels.get(client.config.d_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
-  }, 21600000);
+    }, 21600000); //6 hours 21600000
+
+    client.bump_intervals_started = true;
+  }
 }
 

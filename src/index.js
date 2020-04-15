@@ -1,18 +1,18 @@
 //https://discordjs.guide/creating-your-bot/commands-with-user-input.html#basic-arguments
 //and then check out the additional features stuff
 
+//Init
 const fs = require("fs");
-
-//Instantiate the Discord client (the bot)
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-client.config = require("../config.json");
-
-client.commands = new Discord.Collection();
-
 //Allow environment variables to be accessed (allows the program to load the token via .env)
 require('dotenv').config();
+
+//Global variables
+client.config = require("../config.json");
+client.commands = new Discord.Collection();
+client.bump_intervals_started = false;
 
 //For each event, load the functionality of the event and listen to it
 fs.readdir("./src/events/", (err, files) =>
