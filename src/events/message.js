@@ -79,7 +79,12 @@ module.exports = (Discord, client, message) =>
       //Defeat losers
       if(message.mentions.users.has("238858432214597635"))
       {
-        message.reply("https://i.imgur.com/iieDV6J.jpg").catch(console.error);;
+        //Select a random image
+        const images = ["https://i.imgur.com/iieDV6J.jpg", "https://i.imgur.com/Qz0BRqe.png", "https://i.imgur.com/OxBIVSu.jpg"];
+        let rand = Math.random() * images.length;
+        rand = Math.floor(rand);
+
+        message.reply(images[rand]).catch(console.error);
         return;
       }
 
@@ -124,7 +129,7 @@ module.exports = (Discord, client, message) =>
 
       //Haha Gay-inator (these variables will be re-used for the Dad Joke-inator)
       let rand = Math.random() * 100;
-      let normal_chance = 0.1; //0.1% chance
+      let normal_chance = 0.025; //0.1% chance
 
       //Has a 0.1% chance of responding with "haha gay"
       if((rand <= normal_chance))

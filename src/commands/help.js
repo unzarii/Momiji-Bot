@@ -14,7 +14,7 @@ module.exports =
           .setThumbnail(message.guild.iconURL)
           .addField("Useful Commands", "-help\n-ping\n-serverinfo\n-memberinfo", false)
           .addField("Fun Commands", "-awoo\n-headpat\n-say <output>", false)
-          .addField("Other", "I also have a 0.1% chance of being *very mean* to you.", false)
+          .addField("Other", "I also have a 0.025% chance of being *very mean* to you.", false)
 
         message.channel.send(help).catch(console.error);
       }
