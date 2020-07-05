@@ -62,7 +62,6 @@ module.exports = (Discord, client) =>
     setInterval(() => {
     client.channels.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
     client.channels.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
-    client.channels.get(client.config.d_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
     }, 21600000); //6 hours 21600000
 
     client.bump_intervals_started = true;
