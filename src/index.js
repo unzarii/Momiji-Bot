@@ -12,7 +12,6 @@ require('dotenv').config();
 //Global variables
 client.config = require("../config.json");
 client.commands = new Discord.Collection();
-client.bump_intervals_started = false;
 
 //For each event, load the functionality of the event and listen to it
 fs.readdir("./src/events/", (err, files) =>
@@ -23,9 +22,18 @@ fs.readdir("./src/events/", (err, files) =>
     {
       return;
     }
+
     const event_handler = require(`./events/${file}`);
     const event_name = file.split(".")[0];
-    client.on(event_name, (...args) => event_handler(Discord, client, ...args));
+
+    if(event_name === "ready")
+    {
+      client.once("ready", (...args) => event_handler(Discord, client, ...args));
+    }
+    else
+    {
+      client.on(event_name, (...args) => event_handler(Discord, client, ...args));
+    }
   });
 });
 
@@ -38,6 +46,7 @@ fs.readdir("./src/commands/", (err, files) =>
     {
       return;
     }
+
     const command_handler = require(`./commands/${file}`);
     const command_name = file.split(".")[0];
     client.commands.set(command_name, command_handler);

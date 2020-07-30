@@ -44,7 +44,6 @@ module.exports =
               voiceChannels++;
               break;
             default:
-              console.log("Not a relevant channel");
           }
         });
 

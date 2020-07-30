@@ -25,7 +25,7 @@ module.exports = (Discord, client) =>
       "I'm waiting",
       "Here's another reminder for you!",
       "Bump!",
-      "Onii-sama?",
+      "Nemui?",
       "Nooooo I don't wanna be ignored noooooooooooo",
       "Being ignored is fine actually",
       "Tag a friend and if they don't bump the bots in five minutes, they owe you an Applie iMac G3/333 (Lime)",
@@ -36,7 +36,14 @@ module.exports = (Discord, client) =>
       "Helloooo please bump the bots",
       "I can't bump the bots so I suuure wish someone else could help me with that",
       "Owo wAnWAn buMp tHe bOts PweAse >:3ccc",
-      "Existence is suffering"
+      "Existence is suffering",
+      "Maybe Nemui will update me someday if I encourage people to bump more!!",
+      "Pwease hewp me bump",
+      "If you bump, Nemui might give you a cool role if he notices!!!!",
+      "baka mitai kodomo na no ne\nyume wo otte kizu tsuite\nuso ga heta na kuse ni\nwaraenai egao miseta\n\nI LOVE YOU mo roku ni iwanai\nkuchibeta de honma ni bukiyou\nna no ni na no ni doushite\nsayonara wa ieta no\ndame da ne\ndame yo dame na no yo\nanta ga suki de suki sugite\ndore dake tsuyoi osake de mo\nyugamanai omoide ga\nbaka mitai\n\nbaka mitai hontou baka ne\nanta shinjiru bakari de\ntsuyoi onna no furi\nsetsunsana no yokaze abiru\n\nhitori ni natte san-nen ga sugi\nmachinami sae mo kawarimashita\nna no ni na no ni doushite\nmiren dake okizari\n\nhonma ni roku na otoko ya nai\nsoroi no yubiwa hazushimasu\nzamaa miro seisei suru wa\nii kagen mattete mo\nbaka mitai\n\ndame da ne\ndame yo dame na no yo\nanta ga suki de suki sugite\ndore dake tsuyoi osake de mo\nyugamanai omoide ga\nbaka mitai\n\nhonma ni roku na otoko ya nai\nsoroi no yubiwa hazushimasu\nzamaa miro seisei suru wa\nnan na no yo kono namida\nbaka mitai\n\nOh! Sorry, I was just enjoying myself. Please bump the bots!",
+      "If you were a good person you would bump the bots, just like I would if I had fingers!",
+      "Ever thought about it feels to be hit with the force of an entire mountain? Not bumping the bots may enlighten you!",
+      "\"!d bump\ndlm!bump\n.bump\n\n...I wonder why it doesn't work for me\""
     ];
 
     var rand = Math.random() * one_liners.length;
@@ -48,23 +55,17 @@ module.exports = (Discord, client) =>
   console.log("awooo~");
 
   //Set the presence initially
-  client.user.setPresence({ status: "playing", game: { name: "awooo | -help" } }).catch(console.error);;
+  client.user.setPresence({ status: "playing", game: { name: "awoo! | -help" } }).catch(console.error);;
 
-  //Prevent the intervals from duplicating if the ready event is somehow fired more than once
-  if(client.bump_intervals_started === false)
-  {
-    //Set the presence again every hour, just in case (as it seems to disappear after a while)
-    setInterval(() => {
-      client.user.setPresence({ status: "playing", game: { name: "awooo | -help" } });
-    }, 3600000);
+  //Set the presence again every hour, just in case (as it seems to disappear after a while)
+  setInterval(() => {
+    client.user.setPresence({ status: "playing", game: { name: "awoo! | -help" } });
+  }, 3600000);
 
-    //Remind the stupid admin to bump his bots every 4 hours
-    setInterval(() => {
-    client.channels.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
-    client.channels.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
-    }, 21600000); //6 hours 21600000
-
-    client.bump_intervals_started = true;
-  }
+  //Remind the stupid admin to bump his bots every 4 hours
+  setInterval(() => {
+  client.channels.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
+  client.channels.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
+  }, 21600000); //6 hours 21600000
 }
 
