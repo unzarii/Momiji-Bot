@@ -2,10 +2,10 @@
 Yet another bot, this time in the theme of a popular Touhou character
 
 # Required Stuff
-- Node v10.16.2
-- discord.js@11.5.1
+- Node v12.18.3
+- discord.js@12.2.0
 - dotenv@8.2.0
-- moment@2.24.0
+- moment@2.27.0
 
 For hosting on Linux:
 - pm2 v4.2.3
