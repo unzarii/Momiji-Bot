@@ -1,4 +1,4 @@
 module.exports = (Discord, client, member) =>
 {
-  console.log(`${member.user.username}#${member.user.discriminator} joined.`);
+  console.log(`${member.user.username}#${member.user.discriminator} (${member.user.id}) joined ${member.guild.name} (${member.guild.id})`);
 }

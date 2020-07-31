@@ -8,10 +8,10 @@ module.exports =
     {
       if(client_permissions.has("EMBED_LINKS"))
       {
-        const help = new Discord.RichEmbed()
+        const help = new Discord.MessageEmbed()
           .setColor(0xe92134)
           .setTitle("Help")
-          .setThumbnail(message.guild.iconURL)
+          .setThumbnail(message.guild.iconURL({dynamic: true}))
           .addField("Useful Commands", "-help\n-ping\n-serverinfo\n-memberinfo", false)
           .addField("Fun Commands", "-awoo\n-headpat\n-say <output>", false)
           .addField("Other", "I also have a 0.025% chance of being *very mean* to you.", false)

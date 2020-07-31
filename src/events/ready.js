@@ -55,17 +55,17 @@ module.exports = (Discord, client) =>
   console.log("awooo~");
 
   //Set the presence initially
-  client.user.setPresence({ status: "playing", game: { name: "awoo! | -help" } }).catch(console.error);;
+  client.user.setPresence({ activity: { name: "awoo! | -help" } }).catch(console.error);
 
   //Set the presence again every hour, just in case (as it seems to disappear after a while)
   setInterval(() => {
-    client.user.setPresence({ status: "playing", game: { name: "awoo! | -help" } });
+    client.user.setPresence({ activity: { name: "awoo! | -help" } }).catch(console.error);
   }, 3600000);
 
   //Remind the stupid admin to bump his bots every 4 hours
   setInterval(() => {
-  client.channels.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
-  client.channels.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
+  client.channels.cache.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
+  client.channels.cache.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
   }, 21600000); //6 hours 21600000
 }
 

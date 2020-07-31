@@ -59,10 +59,10 @@ module.exports =
         user_age_string = user_age_string.join(", ");
 
         //Construct and send the user info embed
-        const user_info = new Discord.RichEmbed()
+        const user_info = new Discord.MessageEmbed()
           .setColor(0xe92134)
           .setTitle(user.tag)
-          .setThumbnail(user.displayAvatarURL)
+          .setThumbnail(user.displayAvatarURL({dynamic: true}))
           .addField("Creation Date:", user.createdAt.toUTCString(), false)
           .addField("Account Age:", user_age_string, false)
           .addField("User ID:", user.id, false)

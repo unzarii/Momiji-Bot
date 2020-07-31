@@ -4,7 +4,7 @@
 //Init
 const fs = require("fs");
 const Discord = require("discord.js");
-const client = new Discord.Client();
+const client = new Discord.Client({retryLimit: 0});
 
 //Allow environment variables to be accessed (allows the program to load the token via .env)
 require('dotenv').config();

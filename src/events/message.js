@@ -77,7 +77,7 @@ module.exports = (Discord, client, message) =>
       const message_lowercase = message.content.toLowerCase();
 
       //Defeat losers
-      if(message.mentions.users.has("238858432214597635"))
+      if(message.mentions.users.has(client.config.owner))
       {
         //Select a random image
         const images = ["https://i.imgur.com/iieDV6J.jpg", "https://i.imgur.com/Qz0BRqe.png", "https://i.imgur.com/OxBIVSu.jpg"];

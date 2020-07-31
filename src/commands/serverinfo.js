@@ -33,7 +33,7 @@ module.exports =
         let textChannels = 0;
         let voiceChannels = 0;
 
-        message.guild.channels.forEach(channel =>
+        message.guild.channels.cache.forEach(channel =>
         {
           switch(channel.type)
           {
@@ -48,16 +48,16 @@ module.exports =
         });
 
         //Construct and send the server info embed
-        const server_info = new Discord.RichEmbed()
+        const server_info = new Discord.MessageEmbed()
           .setColor(0xe92134)
           .setTitle("Server Information")
-          .setThumbnail(message.guild.iconURL)
+          .setThumbnail(message.guild.iconURL({dynamic: true}))
           .addField("Server Creation Date:", message.guild.createdAt.toUTCString(), false)
           .addField("Server Age:", serverAgeString, false)
           .addField("Text Channels:", textChannels, true)
           .addField("Voice Channels:", voiceChannels, true)
           .addField("Member Count:", message.guild.memberCount, false)
-          .addField("Roles:", message.guild.roles.size, false)
+          .addField("Roles:", message.guild.roles.cache.size, false)
           .addField("Region:", message.guild.region, false)
           .addField("Owner:", message.guild.owner, false)
 
