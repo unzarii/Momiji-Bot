@@ -2,7 +2,7 @@ module.exports =
 {
   name: "ping",
   description: "pong",
-  execute(client, client_permissions, message, args, Discord)
+  execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))
     {

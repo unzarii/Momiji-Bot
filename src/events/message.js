@@ -2,7 +2,7 @@
 const faces = require("../utilities/faces.js");
 const prefix = "-";
 
-module.exports = (Discord, client, message) =>
+module.exports = (client, message) =>
 {
   //Ignore messages from bots
   if(message.author.bot === true)
@@ -56,7 +56,7 @@ module.exports = (Discord, client, message) =>
     try
     {
       console.log(`Executing command: "${command}".`);
-      client.commands.get(command).execute(client, client_permissions, message, args, Discord);
+      client.commands.get(command).execute(client, client_permissions, message, args);
     }
     catch (error)
     {

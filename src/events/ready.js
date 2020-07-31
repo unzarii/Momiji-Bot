@@ -2,7 +2,7 @@
 const faces = require("../utilities/faces.js");
 const fs = require("fs");
 
-module.exports = (Discord, client) =>
+module.exports = (client) =>
 {
   function getRandomOneLiner()
   {
@@ -46,7 +46,7 @@ module.exports = (Discord, client) =>
       "\"!d bump\ndlm!bump\n.bump\n\n...I wonder why it doesn't work for me\""
     ];
 
-    var rand = Math.random() * one_liners.length;
+    let rand = Math.random() * one_liners.length;
     rand = Math.floor(rand);
 
     return one_liners[rand];

@@ -28,11 +28,11 @@ fs.readdir("./src/events/", (err, files) =>
 
     if(event_name === "ready")
     {
-      client.once("ready", (...args) => event_handler(Discord, client, ...args));
+      client.once("ready", (...args) => event_handler(client, ...args));
     }
     else
     {
-      client.on(event_name, (...args) => event_handler(Discord, client, ...args));
+      client.on(event_name, (...args) => event_handler(client, ...args));
     }
   });
 });

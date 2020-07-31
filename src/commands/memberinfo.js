@@ -1,10 +1,11 @@
+const Discord = require('discord.js');
 const moment = require("moment");
 
 module.exports =
 {
   name: "memberinfo",
   description: "Display information about a member",
-  execute(client, client_permissions, message, args, Discord)
+  execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))
     {

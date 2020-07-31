@@ -1,8 +1,10 @@
+const Discord = require('discord.js');
+
 module.exports =
 {
   name: "help",
   description: "Display a list of commands",
-  execute(client, client_permissions, message, args, Discord)
+  execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))
     {
