@@ -8,9 +8,6 @@
     "dev": "nodemon src/index.js"
   },
   "author": "Oniisama",
-  "engines": {
-    "node": "10.16.2"
-  },
   "dependencies": {
     "discord.js": "12.2.0",
     "dotenv": "^8.2.0",
