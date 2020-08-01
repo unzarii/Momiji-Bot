@@ -1,4 +1,4 @@
-//TODO: I don't know if I should be adding this as a property to the Discord client, or requiring it here
+require('dotenv').config();
 const faces = require("../utilities/faces.js");
 const fs = require("fs");
 
@@ -54,12 +54,14 @@ module.exports = (client) =>
 
   console.log("awooo~");
 
+  let activity = `awoo! | ${process.env.DEFAULTPREFIX}help`
+
   //Set the presence initially
-  client.user.setPresence({ activity: { name: "awoo! | -help" } }).catch(console.error);
+  client.user.setPresence({ activity: { name: activity } }).catch(console.error);
 
   //Set the presence again every hour, just in case (as it seems to disappear after a while)
   setInterval(() => {
-    client.user.setPresence({ activity: { name: "awoo! | -help" } }).catch(console.error);
+    client.user.setPresence({ activity: { name: activity } }).catch(console.error);
   }, 3600000);
 
   //Remind the stupid admin to bump his bots every 4 hours

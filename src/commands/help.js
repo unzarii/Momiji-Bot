@@ -1,4 +1,7 @@
 const Discord = require('discord.js');
+require('dotenv').config();
+
+let prefix = process.env.DEFAULTPREFIX;
 
 module.exports =
 {
@@ -14,8 +17,8 @@ module.exports =
           .setColor(0xe92134)
           .setTitle("Help")
           .setThumbnail(message.guild.iconURL({dynamic: true}))
-          .addField("Useful Commands", "-help\n-ping\n-serverinfo\n-memberinfo", false)
-          .addField("Fun Commands", "-awoo\n-headpat\n-say <output>", false)
+          .addField("Useful Commands", `${prefix}help\n${prefix}ping\n${prefix}serverinfo\n${prefix}memberinfo`, false)
+          .addField("Fun Commands", `${prefix}awoo\n${prefix}headpat\n${prefix}say <output>`, false)
           .addField("Other", "I also have a 0.025% chance of being *very mean* to you.", false)
 
         message.channel.send(help).catch(console.error);

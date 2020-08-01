@@ -1,6 +1,6 @@
-//TODO: I don't know if I should be adding this as a property to the Discord client, or requiring it here
+require('dotenv').config();
 const faces = require("../utilities/faces.js");
-const prefix = "-";
+const prefix = process.env.DEFAULTPREFIX;
 
 module.exports = (client, message) =>
 {
