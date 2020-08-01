@@ -42,8 +42,8 @@ module.exports = (client) =>
       "If you bump, Nemui might give you a cool role if he notices!!!!",
       "baka mitai kodomo na no ne\nyume wo otte kizu tsuite\nuso ga heta na kuse ni\nwaraenai egao miseta\n\nI LOVE YOU mo roku ni iwanai\nkuchibeta de honma ni bukiyou\nna no ni na no ni doushite\nsayonara wa ieta no\ndame da ne\ndame yo dame na no yo\nanta ga suki de suki sugite\ndore dake tsuyoi osake de mo\nyugamanai omoide ga\nbaka mitai\n\nbaka mitai hontou baka ne\nanta shinjiru bakari de\ntsuyoi onna no furi\nsetsunsana no yokaze abiru\n\nhitori ni natte san-nen ga sugi\nmachinami sae mo kawarimashita\nna no ni na no ni doushite\nmiren dake okizari\n\nhonma ni roku na otoko ya nai\nsoroi no yubiwa hazushimasu\nzamaa miro seisei suru wa\nii kagen mattete mo\nbaka mitai\n\ndame da ne\ndame yo dame na no yo\nanta ga suki de suki sugite\ndore dake tsuyoi osake de mo\nyugamanai omoide ga\nbaka mitai\n\nhonma ni roku na otoko ya nai\nsoroi no yubiwa hazushimasu\nzamaa miro seisei suru wa\nnan na no yo kono namida\nbaka mitai\n\nOh! Sorry, I was just enjoying myself. Please bump the bots!",
       "If you were a good person you would bump the bots, just like I would if I had fingers!",
-      "Ever thought about it feels to be hit with the force of an entire mountain? Not bumping the bots may enlighten you!",
-      "\"!d bump\ndlm!bump\n.bump\n\n...I wonder why it doesn't work for me\""
+      "Ever thought about how it feels to be hit with the force of an entire mountain? Not bumping the bots may enlighten you!",
+      "!d bump\ndlm!bump\n.bump\n\n...I wonder why it doesn't work for me"
     ];
 
     let rand = Math.random() * one_liners.length;
