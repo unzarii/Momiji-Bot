@@ -11,28 +11,32 @@ module.exports =
     {
       if(client_permissions.has("EMBED_LINKS"))
       {
-        let user = undefined;
+        let member = undefined;
 
-        if(args.length === 1)
+        //Determine whether the user is getting the information of another member, or themselves
+        if(args.length === 1) //User is attempting to get the information of another member
         {
           const input = args[0];
           const guild_member = message.guild.member(input);
           const mention = message.mentions.members.first();
 
-          //TODO: SOMEDAY change this to be able to view ANY discord member; this requires this file to be completely promise-ified probably
-          //HOWEVER I SPENT AN HOUR TRYING TO FIGURE OUT THIS PROMISE STUFF AND I JUST COULDNT GET IT TO WORK AAAA
-          if(guild_member) //If the input is a valid user ID
+          if(guild_member) //If the input is a user ID
           {
-            user = guild_member.user;
+            member = guild_member.user;
           }
-          else if(mention) //If the input is a valid user mention
+          else if(mention) //If the input is a user mention
           {
-            user = mention.user;
+            member = mention.user;
+          }
+          else //If the input is invalid
+          {
+            message.channel.send("Member not found").catch(console.error);
+            return;
           }
         }
-        else if(args.length === 0)
+        else if(args.length === 0) //User is attempting to get the information of themselves
         {
-          user = message.author;
+          member = message.author;
         }
         else
         {
@@ -42,9 +46,9 @@ module.exports =
 
         //Calculate the age of the user
         const current_date = moment(new Date());
-        let created_date = moment(user.createdAt);
+        let created_date = moment(member.createdAt);
         const intervals = ["years","months","days"];
-        let user_age_string = [];
+        let member_age_string = [];
 
         //Find the difference between the two dates per interval, and then add it to createdDate so on the next pass there is no difference in that interval
         //This isolates the next interval (which won't include the previous interval in its diff)
@@ -54,21 +58,22 @@ module.exports =
           created_date.add(diff, intervals[i]);
 
           //Build the array that will become the resulting string
-          user_age_string.push(diff + " " + intervals[i]);
+          member_age_string.push(diff + " " + intervals[i]);
         }
 
-        user_age_string = user_age_string.join(", ");
+        member_age_string = member_age_string.join(", ");
 
-        //Construct and send the user info embed
-        const user_info = new Discord.MessageEmbed()
+        //Construct and send the member info embed
+        const member_info = new Discord.MessageEmbed()
           .setColor(0xe92134)
-          .setTitle(user.tag)
-          .setThumbnail(user.displayAvatarURL({dynamic: true}))
-          .addField("Creation Date:", user.createdAt.toUTCString(), false)
-          .addField("Account Age:", user_age_string, false)
-          .addField("User ID:", user.id, false)
+          .setTitle(member.tag)
+          .setThumbnail(member.displayAvatarURL({dynamic: true}))
+          .addField("Creation Date:", member.createdAt.toUTCString(), false)
+          .addField("Account Age:", member_age_string, false)
+          .addField("ID:", member.id, false)
 
-        message.channel.send(user_info).catch(console.error);
+        message.channel.send(member_info).catch(console.error);
+
       }
       else
       {
