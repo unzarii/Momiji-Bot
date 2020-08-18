@@ -7,6 +7,8 @@ module.exports =
 {
   name: "help",
   description: "Display a list of commands",
+  min_arguments: 0,
+  max_arguments: 0,
   execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))
@@ -17,7 +19,7 @@ module.exports =
           .setColor(0xe92134)
           .setTitle("Help")
           .setThumbnail(message.guild.iconURL({dynamic: true}))
-          .addField("Useful Commands", `${prefix}help\n${prefix}ping\n${prefix}serverinfo\n${prefix}memberinfo`, false)
+          .addField("Useful Commands", `${prefix}help\n${prefix}ping\n${prefix}serverinfo\n${prefix}memberinfo <member (optional)>`, false)
           .addField("Fun Commands", `${prefix}awoo\n${prefix}headpat\n${prefix}say <output>`, false)
           .addField("Other", "I also have a 0.025% chance of being *very mean* to you.", false)
 

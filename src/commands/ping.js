@@ -2,6 +2,8 @@ module.exports =
 {
   name: "ping",
   description: "pong",
+  min_arguments: 0,
+  max_arguments: 0,
   execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))

@@ -1,15 +1,16 @@
-//TODO: I don't know if I should be adding this as a property to the Discord client, or requiring it here
-const faces = require("../utilities/faces.js");
+const GetRandomFace = require("../utilities/GetRandomFace.js");
 
 module.exports =
 {
   name: "headpat",
   description: "so comfy",
+  min_arguments: 0,
+  max_arguments: 0,
   execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))
     {
-      message.channel.send(`${faces.getRandom()}`).catch(console.error);
+      message.channel.send(`${GetRandomFace()}`).catch(console.error);
     }
   }
 }

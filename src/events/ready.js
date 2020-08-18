@@ -1,5 +1,5 @@
 require('dotenv').config();
-const faces = require("../utilities/faces.js");
+const GetRandomFace = require("../utilities/GetRandomFace.js");
 const fs = require("fs");
 
 module.exports = (client) =>
@@ -66,8 +66,8 @@ module.exports = (client) =>
 
   //Remind the stupid admin to bump his bots every 4 hours
   setInterval(() => {
-  client.channels.cache.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
-  client.channels.cache.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${faces.getRandom()}`).catch(console.error);
+  client.channels.cache.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${GetRandomFace()}`).catch(console.error);
+  client.channels.cache.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${GetRandomFace()}`).catch(console.error);
   }, 21600000); //6 hours 21600000
 }
 

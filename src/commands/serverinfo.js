@@ -1,48 +1,33 @@
 const Discord = require('discord.js');
-const moment = require("moment");
+const CalculateDurationBetweenDates = require("../utilities/CalculateDurationBetweenDates");
 
 module.exports =
 {
   name: "serverinfo",
   description: "Display information about the server",
+  min_arguments: 0,
+  max_arguments: 0,
   execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))
     {
       if(client_permissions.has("EMBED_LINKS"))
       {
-        //Calculate the age of the server
-        const currentDate = moment(new Date());
-        let createdDate = moment(message.guild.createdAt);
-        const intervals = ["years","months","days"];
-        let serverAgeString = [];
-
-        //Find the difference between the two dates per interval, and then add it to createdDate so on the next pass there is no difference in that interval
-        //This isolates the next interval (which won't include the previous interval in its diff)
-        for(let i = 0; i < intervals.length; i++)
-        {
-          let diff = currentDate.diff(createdDate, intervals[i]);
-          createdDate.add(diff, intervals[i]);
-
-          //Build the array that will become the resulting string
-          serverAgeString.push(diff + " " + intervals[i]);
-        }
-
-        serverAgeString = serverAgeString.join(", ");
+        server_age_string = CalculateDurationBetweenDates(new Date(), message.guild.createdAt);
 
         //Calculate how many channels of each type that there are
-        let textChannels = 0;
-        let voiceChannels = 0;
+        let text_channels = 0;
+        let voice_channels = 0;
 
         message.guild.channels.cache.forEach(channel =>
         {
           switch(channel.type)
           {
             case "text":
-              textChannels++;
+              text_channels++;
               break;
             case "voice":
-              voiceChannels++;
+              voice_channels++;
               break;
             default:
           }
@@ -54,9 +39,9 @@ module.exports =
           .setTitle("Server Information")
           .setThumbnail(message.guild.iconURL({dynamic: true}))
           .addField("Server Creation Date:", message.guild.createdAt.toUTCString(), false)
-          .addField("Server Age:", serverAgeString, false)
-          .addField("Text Channels:", textChannels, true)
-          .addField("Voice Channels:", voiceChannels, true)
+          .addField("Server Age:", server_age_string, false)
+          .addField("Text Channels:", text_channels, true)
+          .addField("Voice Channels:", voice_channels, true)
           .addField("Member Count:", message.guild.memberCount, false)
           .addField("Roles:", message.guild.roles.cache.size, false)
           .addField("Region:", message.guild.region, false)

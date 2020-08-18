@@ -1,5 +1,6 @@
 require('dotenv').config();
-const faces = require("../utilities/faces.js");
+const GetRandomFace = require("../utilities/GetRandomFace.js");
+const DefeatLoser = require("../utilities/DefeatLoser.js");
 const prefix = process.env.DEFAULTPREFIX;
 
 module.exports = (client, message) =>
@@ -79,13 +80,7 @@ module.exports = (client, message) =>
       //Defeat losers
       if(message.mentions.users.has(client.config.owner))
       {
-        //Select a random image
-        const images = ["https://i.imgur.com/iieDV6J.jpg", "https://i.imgur.com/Qz0BRqe.png", "https://i.imgur.com/OxBIVSu.jpg"];
-        let rand = Math.random() * images.length;
-        rand = Math.floor(rand);
-
-        message.reply(images[rand]).catch(console.error);
-        return;
+        DefeatLoser(message);
       }
 
       const im_array = ["i'm", "im", "i am"];
@@ -136,7 +131,7 @@ module.exports = (client, message) =>
       {
         if(message.author.id === client.config.owner)
         {
-          message.reply(`I think that you're wonderful and extremely heterosexual ${faces.getRandom()}.`).catch(console.error);
+          message.reply(`I think that you're wonderful and extremely heterosexual ${GetRandomFace()}.`).catch(console.error);
           console.log(`Complimented my lovely owner in ${message.guild.name} (${message.guild.id}).`);
         }
         else

@@ -1,69 +1,25 @@
 const Discord = require('discord.js');
-const moment = require("moment");
-
-function CalculateDurationBetweenDates(start_date, end_date)
-{
-  const intervals = ["years","months","days"];
-  let output_string = [];
-  let s_date = moment(start_date);
-  let e_date = moment(end_date);
-
-  //Find the difference between the two dates per interval, and then add it to e_date so on the next pass there is no difference in that interval
-  //This isolates the next interval (which won't include the previous interval in its diff)
-  for(let i = 0; i < intervals.length; i++)
-  {
-    let diff = s_date.diff(e_date, intervals[i]);
-    e_date.add(diff, intervals[i]);
-
-    //Build the array that will become the resulting string
-    output_string.push(diff + " " + intervals[i]);
-  }
-
-  output_string = output_string.join(", ");
-  return output_string;
-}
+const GetMemberFromArguments = require("../utilities/GetMemberFromArguments.js");
+const CalculateDurationBetweenDates = require("../utilities/CalculateDurationBetweenDates");
 
 module.exports =
 {
   name: "memberinfo",
   description: "Display information about a member",
+  min_arguments: 0,
+  max_arguments: 1,
   execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))
     {
       if(client_permissions.has("EMBED_LINKS"))
       {
-        let member = undefined;
+        let member = GetMemberFromArguments(message, args) //This requires either 0 arguments or the 1st argument to be the member
 
-        //Determine whether the user is getting the information of another member, or themselves
-        if(args.length === 1) //User is attempting to get the information of another member
+        //If the member could not be resolved
+        if(member === undefined)
         {
-          const input = args[0];
-          const guild_member = message.guild.member(input);
-          const mention = message.mentions.members.first();
-
-          //Get the user based on the input
-          if(guild_member) //If the input is a user ID
-          {
-            member = guild_member;
-          }
-          else if(mention) //If the input is a user mention
-          {
-            member = mention;
-          }
-          else //If the input is invalid
-          {
-            message.channel.send("Member not found!! (｡•́︿•̀｡)").catch(console.error);
-            return;
-          }
-        }
-        else if(args.length === 0) //User is attempting to get the information of themselves
-        {
-          member = message.member;
-        }
-        else
-        {
-          message.channel.send("Incorrect number of arguments!! (｡•́︿•̀｡)").catch(console.error);
+          message.channel.send("Member not found!! (｡•́︿•̀｡)").catch(console.error);
           return;
         }
 
@@ -82,7 +38,6 @@ module.exports =
           .addField("ID:", member.id, false)
 
         message.channel.send(member_info).catch(console.error);
-
       }
       else
       {
@@ -91,3 +46,10 @@ module.exports =
     }
   }
 }
+
+//TODO: Remember me lol
+        /*if(args.length > 1)
+        {
+          message.channel.send("Incorrect number of arguments!! (｡•́︿•̀｡)").catch(console.error);
+          return;
+        }*/
