@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const GetMemberFromArguments = require("../utilities/GetMemberFromArguments.js");
+const GetMemberFromArgument = require("../utilities/GetMemberFromArgument.js");
 const CalculateDurationBetweenDates = require("../utilities/CalculateDurationBetweenDates");
 
 module.exports =
@@ -12,10 +12,19 @@ module.exports =
     {
       if(client_permissions.has("EMBED_LINKS"))
       {
-        let member = GetMemberFromArguments(message, args) //This requires either 0 arguments or the 1st argument to be the member
+        let member;
+
+        if(args.length === 0) //User is attempting to get their own information
+        {
+          member = message.member;
+        }
+        else //User is attempting to get the information of another member
+        {
+          member = GetMemberFromArgument(message, args[0]);
+        }
 
         //If the member could not be resolved
-        if(member === undefined)
+        if(!member)
         {
           message.channel.send("Member not found!! (｡•́︿•̀｡)").catch(console.error);
           return;
@@ -44,10 +53,3 @@ module.exports =
     }
   }
 }
-
-//TODO: Remember me lol
-        /*if(args.length > 1)
-        {
-          message.channel.send("Incorrect number of arguments!! (｡•́︿•̀｡)").catch(console.error);
-          return;
-        }*/
