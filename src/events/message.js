@@ -77,10 +77,10 @@ module.exports = (client, message) =>
       //Prepare message.content for case insensitive checks
       const message_lowercase = message.content.toLowerCase();
 
-      //Defeat losers
-      if(message.mentions.users.has(client.config.owner))
+      //If the message mentions the owner, and the author is not the author
+      if(message.mentions.users.has(client.config.owner) && message.author.id !== client.config.owner)
       {
-        DefeatLoser(message);
+        DefeatLoser(message, message.author.id);
       }
 
       const im_array = ["i'm", "im", "i am"];
