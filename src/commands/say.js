@@ -2,8 +2,6 @@ module.exports =
 {
   name: "say",
   description: "I'll repeat after you",
-  min_arguments: 1,
-  max_arguments: Infinity,
   execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))

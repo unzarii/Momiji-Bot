@@ -6,8 +6,6 @@ module.exports =
 {
   name: "memberinfo",
   description: "Display information about a member",
-  min_arguments: 0,
-  max_arguments: 1,
   execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))

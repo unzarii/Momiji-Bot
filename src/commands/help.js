@@ -7,8 +7,6 @@ module.exports =
 {
   name: "help",
   description: "Display a list of commands",
-  min_arguments: 0,
-  max_arguments: 0,
   execute(client, client_permissions, message, args)
   {
     if(client_permissions.has("SEND_MESSAGES"))
