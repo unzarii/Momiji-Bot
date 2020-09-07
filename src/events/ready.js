@@ -43,7 +43,19 @@ module.exports = (client) =>
       "baka mitai kodomo na no ne\nyume wo otte kizu tsuite\nuso ga heta na kuse ni\nwaraenai egao miseta\n\nI LOVE YOU mo roku ni iwanai\nkuchibeta de honma ni bukiyou\nna no ni na no ni doushite\nsayonara wa ieta no\ndame da ne\ndame yo dame na no yo\nanta ga suki de suki sugite\ndore dake tsuyoi osake de mo\nyugamanai omoide ga\nbaka mitai\n\nbaka mitai hontou baka ne\nanta shinjiru bakari de\ntsuyoi onna no furi\nsetsunsana no yokaze abiru\n\nhitori ni natte san-nen ga sugi\nmachinami sae mo kawarimashita\nna no ni na no ni doushite\nmiren dake okizari\n\nhonma ni roku na otoko ya nai\nsoroi no yubiwa hazushimasu\nzamaa miro seisei suru wa\nii kagen mattete mo\nbaka mitai\n\ndame da ne\ndame yo dame na no yo\nanta ga suki de suki sugite\ndore dake tsuyoi osake de mo\nyugamanai omoide ga\nbaka mitai\n\nhonma ni roku na otoko ya nai\nsoroi no yubiwa hazushimasu\nzamaa miro seisei suru wa\nnan na no yo kono namida\nbaka mitai\n\nOh! Sorry, I was just enjoying myself. Please bump the bots!",
       "If you were a good person you would bump the bots, just like I would if I had fingers!",
       "Ever thought about how it feels to be hit with the force of an entire mountain? Not bumping the bots may enlighten you!",
-      "!d bump\ndlm!bump\n.bump\n\n...I wonder why it doesn't work for me"
+      "!d bump\ndlm!bump\n.bump\n\n...I wonder why it doesn't work for me",
+      "Please don't bully me, I'm just trying to help!",
+      "I could be your best friend if you bump the bots! (But my favourite person is Nemui)",
+      "I hope the new members don't just leave immediately",
+      "Who is the coolest bot? It's me",
+      "Who is the least cool bot? FredBoat for sure",
+      "I wonder if I'll ever get per-server settings, maybe I'll be able to moderate someday!",
+      "I hope I can replace FredBoat someday, his music SUCKS",
+      "If you bump the bots I'll consider letting you bully me, just a little bit",
+      "Someday I'll be able to bully you back",
+      "I hope I won't be bullied for this bump reminder...",
+      "I'm in a good mood to remind you to bump the bots",
+      "I-It's not like I want you to bump the bots or anything! Baka!"
     ];
 
     let rand = Math.random() * one_liners.length;
