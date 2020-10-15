@@ -15,7 +15,7 @@ module.exports = (client) =>
       "If you bump the bots I'll like you *a lot* a lot",
       "Bumping the bots increases your cool factor by 5%",
       "Headpats for you if you bump the bots",
-      "It's okay if you don't bump the bots, but you have to give me a `-headpat`",
+      "It's okay if you don't bump the bots, but you have to give me a `m!headpat`",
       "Bump the bots!!",
       "I can't bump the bots myself, you know",
       "The other bots won't listen to me, can you bump them?",
