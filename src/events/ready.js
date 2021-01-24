@@ -80,6 +80,6 @@ module.exports = (client) =>
   setInterval(() => {
   client.channels.cache.get(client.config.awooo_bump).send(`${getRandomOneLiner()} ${GetRandomFace()}`).catch(console.error);
   client.channels.cache.get(client.config.sm_bump).send(`${getRandomOneLiner()} ${GetRandomFace()}`).catch(console.error);
-  }, 21600000); //6 hours 21600000
+  }, 10800000); //3 hours 10800000
 }
 
