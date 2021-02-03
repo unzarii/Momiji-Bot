@@ -81,16 +81,6 @@ module.exports = (client, message) =>
       //Prepare message.content for case insensitive checks
       const message_lowercase = message.content.toLowerCase();
 
-      //If the message mentions the owner, and the author is not the owner
-      if(message.mentions.users.has(client.config.owner) && message.author.id !== client.config.owner)
-      {
-        DefeatLoser(message, message.author.id);
-        return;
-      }
-
-      //List of possible "I'm" permutations for the sake of the "I am gay" meme
-      const im_array = ["i'm", "im", "i am"];
-
       //Check to see if the author is a VIP. There is probably a better way of checking for this.
       let vip = false;
 
@@ -103,14 +93,15 @@ module.exports = (client, message) =>
         }
       }
 
-      if(vip)
+      //If the message mentions the owner, and the author is not the owner, and is not a vip
+      if(message.mentions.users.has(client.config.owner) && message.author.id !== client.config.owner && !vip)
       {
-        console.log(`${message.author.tag} is a vip`);
+        DefeatLoser(message, message.author.id);
+        return;
       }
-      else if(!vip)
-      {
-        console.log(`${message.author.tag} is not a vip`);
-      }
+
+      //List of possible "I'm" permutations for the sake of the "I am gay" meme
+      const im_array = ["i'm", "im", "i am"];
 
       // --------------------------------
       // ------ Auto-Response HELL ------
