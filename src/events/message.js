@@ -1,6 +1,5 @@
 require('dotenv').config();
 const GetRandomFace = require("../utilities/GetRandomFace.js");
-const DefeatLoser = require("../utilities/DefeatLoser.js");
 const prefix = process.env.DEFAULTPREFIX;
 
 module.exports = (client, message) =>
@@ -93,14 +92,7 @@ module.exports = (client, message) =>
         }
       }
 
-      //If the message mentions the owner, and the author is not the owner, and is not a vip
-      if(message.mentions.users.has(client.config.owner) && message.author.id !== client.config.owner && !vip)
-      {
-        DefeatLoser(message, message.author.id);
-        return;
-      }
-
-      //List of possible "I'm" permutations for the sake of the "I am gay" meme
+      //List of possible "I'm" permutations
       const im_array = ["i'm", "im", "i am"];
 
       // --------------------------------
@@ -108,7 +100,7 @@ module.exports = (client, message) =>
       // --------------------------------
       if(im_array.includes(message_lowercase) && !vip) // Don't be mean to VIPs, okay?
       {
-        message.channel.send("gay").catch(console.error);
+        message.channel.send("stinky").catch(console.error);
         return;
       }
       else if(message_lowercase === "master chief, mind telling me what you're doing in that mcdonald's?")
@@ -142,16 +134,16 @@ module.exports = (client, message) =>
         return;
       }
 
-      //Haha Gay-inator (these variables will be re-used for the Dad Joke-inator)
+      //Haha Stinky-inator
       let rand = Math.random() * 100;
       let normal_chance = 0.025; //Very rare
 
-      //Has a 0.1% chance of responding with "haha gay" unless the bot is the owner or a VIP
+      //Has a 0.1% chance of responding with "haha stinky" unless the bot is the owner or a VIP
       if((rand <= normal_chance))
       {
         if(message.author.id === client.config.owner)
         {
-          message.reply(`I think that you're wonderful and extremely heterosexual ${GetRandomFace()}.`).catch(console.error);
+          message.reply(`I think that you're wonderful ${GetRandomFace()}.`).catch(console.error);
           console.log(`Complimented my lovely owner in ${message.guild.name} (${message.guild.id}).`);
         }
         else if(vip)
@@ -160,7 +152,7 @@ module.exports = (client, message) =>
         }
         else
         {
-          message.reply("haha gay").catch(console.error);
+          message.reply("haha stinky").catch(console.error);
           console.log(`Bullied ${message.author.tag} in ${message.guild.name} (${message.guild.id}).`);
         }
 
