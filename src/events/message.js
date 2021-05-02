@@ -108,11 +108,6 @@ module.exports = (client, message) =>
         message.channel.send("https://cdn.discordapp.com/attachments/250743808990380033/653291560590376961/IMG_20191207_180323.jpg").catch(console.error);
         return;
       }
-      else if(message_lowercase === "$dk")
-      {
-        message.channel.send("Donkey Kong").catch(console.error);
-        return;
-      }
       else if(message_lowercase === "roman")
       {
         message.channel.send("https://cdn.discordapp.com/attachments/541428847053242400/663444242143903757/IMG_20200101_220133.jpg").catch(console.error);
