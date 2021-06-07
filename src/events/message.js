@@ -55,7 +55,7 @@ module.exports = (client, message) =>
     //Attempt to execute the command, and pass in the message and bot permissions for that channel
     try
     {
-      console.log(`Executing command: "${command}".`);
+      console.log(`${message.author.tag} executed command: "${command}".`);
       client.commands.get(command).execute(client, client_permissions, message, args);
     }
     catch (error)
