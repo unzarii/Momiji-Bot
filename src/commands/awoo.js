@@ -6,7 +6,7 @@ module.exports =
   {
     if(client_permissions.has("SEND_MESSAGES"))
     {
-      message.channel.send("awoo desu").catch(console.error);;
+      message.channel.send("awoo desu").catch(console.error);
     }
   }
 }

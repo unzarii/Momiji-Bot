@@ -6,6 +6,7 @@ Yet another bot, this time in the theme of a popular Touhou character
 - discord.js@12.2.0
 - dotenv@8.2.0
 - moment@2.27.0
+- seedrandom@3.0.5
 
 For hosting on Linux:
 - pm2 v4.2.3

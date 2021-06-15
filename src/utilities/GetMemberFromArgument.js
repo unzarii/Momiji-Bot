@@ -1,6 +1,7 @@
 module.exports = function(message, arg)
 {
   //TODO: Could improve this with regex but don't need or want to really.
+  //Takes either a ping or an id
 
   //If the argument is a mention, convert it to an ID
   if(arg.startsWith("<@") && arg.endsWith(">"))

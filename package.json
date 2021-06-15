@@ -12,7 +12,8 @@
     "discord.js": "12.2.0",
     "dotenv": "^8.2.0",
     "moment": "^2.27.0",
-    "node-opus": "^0.3.3"
+    "node-opus": "^0.3.3",
+    "seedrandom": "^3.0.5"
   },
   "nodemonConfig": {
     "ignore": [
