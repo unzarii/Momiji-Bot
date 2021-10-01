@@ -133,7 +133,7 @@ module.exports = (client, message) =>
       let rand = Math.random() * 100;
       let normal_chance = 0.025; //Very rare
 
-      //Has a 0.1% chance of responding with "haha stinky" unless the bot is the owner or a VIP
+      //Has a 0.025% chance of responding with "haha stinky" unless the bot is the owner or a VIP
       if((rand <= normal_chance))
       {
         if(message.author.id === client.config.owner)
