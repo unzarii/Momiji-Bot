@@ -1,4 +1,4 @@
-const {Client, Permissions} = require("discord.js");
+const { Permissions } = require("discord.js");
 const GetMemberFromArgument = require("../utilities/GetMemberFromArgument.js");
 const seedrandom = require("seedrandom");
 
@@ -8,12 +8,13 @@ module.exports =
   description: "Ship two members",
   execute(client, client_permissions, message, args)
   {
-    if(client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
+    if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
     {
-      if(client_permissions.has(Permissions.FLAGS.EMBED_LINKS))
+      if (client_permissions.has(Permissions.FLAGS.EMBED_LINKS))
       {
-        if(args.length !== 2) //There must be two arguments (please change this to be handled by the event lol)
+        if (args.length !== 2)
         {
+          // There must be two arguments (please change this to be handled by the event lol)
           message.channel.send("Wrong number of people to ship!").catch(console.error);
           return;
         }
@@ -23,18 +24,18 @@ module.exports =
         const member = GetMemberFromArgument(message, args[0]);
         const member1 = GetMemberFromArgument(message, args[1]);
 
-        if(member)
+        if (member)
         {
           args[0] = member.displayName;
         }
 
-        if(member1)
+        if (member1)
         {
           args[1] = member1.displayName;
         }
 
-        //Before we add the arguments to the seed, sort them so that any combination of left/right will be the same
-        var lovers = [args[0], args[1]];
+        // Before we add the arguments to the seed, sort them so that any combination of left/right will be the same
+        const lovers = [args[0], args[1]];
         lovers.sort();
 
         // Create a seed with the current date, and the sorted names of the people being shipped.
@@ -49,4 +50,4 @@ module.exports =
       }
     }
   }
-}
+};

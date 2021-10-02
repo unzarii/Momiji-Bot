@@ -1,14 +1,12 @@
-require('dotenv').config();
-const GetRandomFace = require("../utilities/GetRandomFace.js");
-const fs = require("fs");
+require("dotenv").config();
 
 module.exports = (client) =>
 {
   console.log("awooo~");
 
-  let activity = `awoo! | ${process.env.DEFAULTPREFIX}help`
+  const activity = `awoo! | ${process.env.DEFAULTPREFIX}help`;
 
-  //Set the presence initially
+  // Set the presence initially
   client.user.setPresence({ activities: [{ name: activity }] });
-}
+};
 

@@ -1,8 +1,9 @@
-//Init
+// Init
 const fs = require("fs");
-const {Client, Collection, Intents} = require("discord.js");
-const client = new Client(
-{
+const { Client, Collection, Intents } = require("discord.js");
+const client = new Client
+(
+  {
     intents: [
       Intents.FLAGS.GUILDS,
       Intents.FLAGS.GUILD_MEMBERS,
@@ -22,21 +23,22 @@ const client = new Client(
       repliedUser: true
     },
     partials: ["CHANNEL"]
-});
+  }
+);
 
-//Allow environment variables to be accessed (allows the program to load the token via .env)
-require('dotenv').config();
+// Allow environment variables to be accessed (allows the program to load the token via .env)
+require("dotenv").config();
 
-//Global variables
+// Global variables
 client.config = require("../config.json");
 client.commands = new Collection();
 
-//For each event, load the functionality of the event and listen to it
+// For each event, load the functionality of the event and listen to it
 fs.readdir("./src/events/", (err, files) =>
 {
   files.forEach(file =>
   {
-    if(!file.endsWith(".js"))
+    if (!file.endsWith(".js"))
     {
       return;
     }
@@ -44,7 +46,7 @@ fs.readdir("./src/events/", (err, files) =>
     const event_handler = require(`./events/${file}`);
     const event_name = file.split(".")[0];
 
-    if(event_name === "ready")
+    if (event_name === "ready")
     {
       client.once("ready", (...args) => event_handler(client, ...args));
     }
@@ -55,12 +57,12 @@ fs.readdir("./src/events/", (err, files) =>
   });
 });
 
-//For each command, load and store the functionality of the command
+// For each command, load and store the functionality of the command
 fs.readdir("./src/commands/", (err, files) =>
 {
   files.forEach(file =>
   {
-    if(!file.endsWith(".js"))
+    if (!file.endsWith(".js"))
     {
       return;
     }
@@ -71,5 +73,5 @@ fs.readdir("./src/commands/", (err, files) =>
   });
 });
 
-//Automatically attempts to login via the token set via .env
+// Automatically attempts to login via the token set via .env
 client.login(process.env.TOKEN);
