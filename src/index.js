@@ -1,8 +1,8 @@
 // Init
 const fs = require("fs");
-const { Client, Collection, Intents} = require("discord.js");
-// Allow environment variables to be accessed (allows the program to load the token via .env)
+const { Client, Collection, Intents } = require("discord.js");
 require("dotenv").config();
+const prefix = process.env.DEFAULTPREFIX;
 const client = new Client
 (
   {
@@ -28,7 +28,7 @@ const client = new Client
     presence:
     {
       status: "online",
-      activities: [{ name: `awoo! | ${process.env.DEFAULTPREFIX}help` }]
+      activities: [{ name: `awoo! | ${prefix}help` }]
     }
   }
 );
@@ -75,6 +75,29 @@ fs.readdir("./src/commands/", (err, files) =>
     const command_handler = require(`./commands/${file}`);
     const command_name = file.split(".")[0];
     client.commands.set(command_name, command_handler);
+
+    // Generate help command strings
+    client.useful_commands = "";
+    client.fun_commands = "";
+
+    try
+    {
+      client.commands.forEach(command =>
+      {
+        if (command.category === "useful")
+        {
+          client.useful_commands += "**" + prefix + command.usage + "**\n*" + command.description + "*\n";
+        }
+        else if (command.category === "fun")
+        {
+          client.fun_commands += "**" + prefix + command.usage + "**\n*" + command.description + "*\n";
+        }
+      });
+    }
+    catch (error)
+    {
+      console.log(error);
+    }
   });
 });
 

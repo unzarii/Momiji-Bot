@@ -1,7 +1,8 @@
 module.exports =
 {
-  name: "ping",
-  description: "pong",
+  usage: "ping",
+  description: "Pong!",
+  category: "useful",
   minimum_args: 0,
   permissions: ["SEND_MESSAGES"],
   execute(client, client_permissions, message)

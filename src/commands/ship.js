@@ -3,8 +3,9 @@ const seedrandom = require("seedrandom");
 
 module.exports =
 {
-  name: "ship",
-  description: "Ship two members",
+  usage: "ship <arg 1> <arg 2>",
+  description: "Ships two members ♥",
+  category: "fun",
   minimum_args: 2,
   permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   execute(client, client_permissions, message, args)

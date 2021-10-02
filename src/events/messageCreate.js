@@ -10,6 +10,13 @@ module.exports = (client, message) =>
     return;
   }
 
+  if (message.guild === null)
+  {
+    message.reply("https://i.imgur.com/iieDV6J.jpg").catch(console.error);
+    console.log(`DM Received from ${message.author.tag}: "${message.content}".`);
+    return;
+  }
+
   // If the message author is somehow no longer a member of the server (it was somehow null once)
   if (message.member === null)
   {
@@ -19,13 +26,6 @@ module.exports = (client, message) =>
   if (message.guild.available === false)
   {
     console.log("Server Outage");
-    return;
-  }
-
-  if (message.guild === null)
-  {
-    message.reply("https://i.imgur.com/iieDV6J.jpg").catch(console.error);
-    console.log(`DM Received from ${message.author.tag}: "${message.content}".`);
     return;
   }
 

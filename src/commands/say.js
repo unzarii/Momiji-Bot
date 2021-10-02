@@ -1,7 +1,8 @@
 module.exports =
 {
-  name: "say",
-  description: "I'll repeat after you",
+  usage: "say <output>",
+  description: "Sends a message copying what you said.",
+  category: "fun",
   minimum_args: 1,
   permissions: ["SEND_MESSAGES", "MANAGE_MESSAGES"],
   execute(client, client_permissions, message, args)

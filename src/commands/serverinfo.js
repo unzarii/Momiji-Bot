@@ -3,8 +3,9 @@ const CalculateDurationBetweenDates = require("../utilities/CalculateDurationBet
 
 module.exports =
 {
-  name: "serverinfo",
-  description: "Display information about the server",
+  usage: "serverinfo",
+  description: "Displays information about the server.",
+  category: "useful",
   minimum_args: 0,
   permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   execute(client, client_permissions, message)

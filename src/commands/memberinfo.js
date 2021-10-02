@@ -4,8 +4,9 @@ const CalculateDurationBetweenDates = require("../utilities/CalculateDurationBet
 
 module.exports =
 {
-  name: "memberinfo",
-  description: "Display information about a member",
+  usage: "memberinfo <(optional) member>",
+  description: "Displays information about a member.",
+  category: "useful",
   minimum_args: 0,
   permissions: ["SEND_MESSAGES", "EMBED_LINKS"],
   execute(client, client_permissions, message, args)
