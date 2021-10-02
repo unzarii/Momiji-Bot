@@ -10,11 +10,9 @@ module.exports = (client, message) =>
     return;
   }
 
-  // Check whether messages are in a guild or DMs
-  if (message.guild === null)
+  // If the message author is somehow no longer a member of the server (it was somehow null once)
+  if (message.member === null)
   {
-    message.reply("https://i.imgur.com/iieDV6J.jpg").catch(console.error);
-    console.log(`DM Received from ${message.author.tag}: "${message.content}".`);
     return;
   }
 
@@ -24,24 +22,17 @@ module.exports = (client, message) =>
     return;
   }
 
-  // If the message author is somehow no longer a member of the server (it was somehow null once)
-  if (message.member === null)
+  if (message.guild === null)
   {
+    message.reply("https://i.imgur.com/iieDV6J.jpg").catch(console.error);
+    console.log(`DM Received from ${message.author.tag}: "${message.content}".`);
     return;
   }
 
-
-
-
-
-
-
-
-
   // Get and store the overall permissions that the bot has in the channel, taking into account overrides
+  // So we can send messages / perform command permission checking
   const client_permissions = message.channel.permissionsFor(message.guild.me);
 
-  // Command handler
   if (message.content.startsWith(prefix))
   {
     // Split the message into command and arguments
@@ -54,13 +45,21 @@ module.exports = (client, message) =>
       {
         message.channel.send(`No such command exists! Try ${prefix}help.`).catch(console.error);
       }
-
       return;
     }
 
-    // Check if the command has the correct permissions and number of arguments.
+    // We have the try as we need to access the command attributes I guess...?
     try
     {
+      // Check permissions
+      const command_permissions = client.commands.get(command).permissions;
+
+      if (!client_permissions.has(command_permissions))
+      {
+        throw `I'm missing some of these permissions: \`${command_permissions}\`! (｡•́︿•̀｡)`;
+      }
+
+      // Check arguments
       const min_args = client.commands.get(command).minimum_args;
       const actual_args = args.length;
 
@@ -68,6 +67,10 @@ module.exports = (client, message) =>
       {
         throw `Not enough arguments! I need at least ${min_args} (｡•́︿•̀｡)`;
       }
+
+      // Execute command
+      console.log(`${message.author.tag} executed command: "${command}".`);
+      client.commands.get(command).execute(client, client_permissions, message, args);
     }
     catch (error)
     {
@@ -75,66 +78,11 @@ module.exports = (client, message) =>
       {
         message.channel.send(error).catch(console.error);
       }
-
-      return;
-    }
-
-
-
-    // Merge this with above try catch and potentially below try catch...?
-
-    // PERMISSIONS NOW
-    // TODO: potentially message the user who tried with the error? in the case that it is a send message issue?
-    try
-    {
-      const command_permissions = client.commands.get(command).permissions;
-
-      if (!client_permissions.has(command_permissions))
-      {
-        throw `I'm missing some of these permissions: \`${command_permissions}\`! (｡•́︿•̀｡)`;
-      }
-    }
-    catch (error)
-    {
-      if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
-      {
-        message.channel.send(error.toString()).catch(console.error);
-      }
       console.log(error);
 
       return;
     }
-
-
-
-
-
-
-    // Attempt to execute the command, and pass in the message and bot permissions for that channel
-    try
-    {
-      console.log(`${message.author.tag} executed command: "${command}".`);
-      client.commands.get(command).execute(client, client_permissions, message, args);
-    }
-    catch (error)
-    {
-      console.log(`Failed to execute command: "${command}".`);
-      console.error(error);
-
-      if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
-      {
-        message.channel.send("OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!").catch(console.error);
-      }
-    }
   }
-
-
-
-
-
-
-
-
   else if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
   {
     // --------------------------------
