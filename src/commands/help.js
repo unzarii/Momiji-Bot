@@ -9,6 +9,7 @@ module.exports =
 {
   name: "help",
   description: "Display a list of commands",
+  minimum_args: 0,
   execute(client, client_permissions, message)
   {
     if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))

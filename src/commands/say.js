@@ -3,6 +3,7 @@ module.exports =
 {
   name: "say",
   description: "I'll repeat after you",
+  minimum_args: 1,
   execute(client, client_permissions, message, args)
   {
     if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))

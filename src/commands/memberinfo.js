@@ -6,6 +6,7 @@ module.exports =
 {
   name: "memberinfo",
   description: "Display information about a member",
+  minimum_args: 0,
   execute(client, client_permissions, message, args)
   {
     if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
@@ -39,7 +40,7 @@ module.exports =
         const member_info = new MessageEmbed()
           .setColor(0xe92134)
           .setTitle(member.user.tag)
-          .setThumbnail(member.user.displayAvatarURL({dynamic: true}))
+          .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
           .addField("Joined At:", member.joinedAt.toUTCString(), false)
           .addField("Member Length:", member_join_string, false)
           .addField("Created At:", member.user.createdAt.toUTCString(), false)

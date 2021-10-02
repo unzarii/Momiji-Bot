@@ -5,10 +5,8 @@ const prefix = process.env.DEFAULTPREFIX;
 
 module.exports = (client, message) =>
 {
-  // Ignore messages from bots
   if (message.author.bot === true)
   {
-    // TODO: Maybe add a meme "thank you bot-san" thing here
     return;
   }
 
@@ -16,7 +14,6 @@ module.exports = (client, message) =>
   if (message.guild === null)
   {
     message.reply("https://i.imgur.com/iieDV6J.jpg").catch(console.error);
-    // Sneaky
     console.log(`DM Received from ${message.author.tag}: "${message.content}".`);
     return;
   }
@@ -33,25 +30,55 @@ module.exports = (client, message) =>
     return;
   }
 
+
+
+
+
+
+
+
+
   // Get and store the overall permissions that the bot has in the channel, taking into account overrides
   const client_permissions = message.channel.permissionsFor(client.user);
 
-  // Is the message a command?
+  // Command handler
   if (message.content.startsWith(prefix))
   {
     // Split the message into command and arguments
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    // If the command is invalid then stop
     if (!client.commands.has(command))
     {
       if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
       {
         message.channel.send(`No such command exists! Try ${prefix}help.`).catch(console.error);
       }
+
       return;
     }
+
+    // We do have that command, but now we have to check if the args are correct!
+    try
+    {
+      const min_args = client.commands.get(command).minimum_args;
+      const actual_args = args.length;
+
+      if (actual_args < min_args)
+      {
+        throw `Incorrect number of arguments. Expected at least: ${min_args}.`;
+      }
+    }
+    catch (error)
+    {
+      if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
+      {
+        message.channel.send(error).catch(console.error);
+      }
+
+      return;
+    }
+
 
     // Attempt to execute the command, and pass in the message and bot permissions for that channel
     try
@@ -70,6 +97,14 @@ module.exports = (client, message) =>
       }
     }
   }
+
+
+
+
+
+
+
+
   else if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
   {
     // --------------------------------

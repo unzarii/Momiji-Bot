@@ -1,6 +1,6 @@
 // Init
 const fs = require("fs");
-const { Client, Collection, Intents } = require("discord.js");
+const { Client, Collection, Intents} = require("discord.js");
 // Allow environment variables to be accessed (allows the program to load the token via .env)
 require("dotenv").config();
 const client = new Client

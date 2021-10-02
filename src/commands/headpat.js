@@ -5,6 +5,7 @@ module.exports =
 {
   name: "headpat",
   description: "so comfy",
+  minimum_args: 0,
   execute(client, client_permissions, message)
   {
     if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))

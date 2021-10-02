@@ -5,6 +5,7 @@ module.exports =
 {
   name: "serverinfo",
   description: "Display information about the server",
+  minimum_args: 0,
   execute(client, client_permissions, message)
   {
     if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
