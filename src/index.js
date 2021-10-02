@@ -1,6 +1,8 @@
 // Init
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
+// Allow environment variables to be accessed (allows the program to load the token via .env)
+require("dotenv").config();
 const client = new Client
 (
   {
@@ -22,12 +24,14 @@ const client = new Client
       ],
       repliedUser: true
     },
-    partials: ["CHANNEL"]
+    partials: ["CHANNEL"],
+    presence:
+    {
+      status: "online",
+      activities: [{ name: `awoo! | ${process.env.DEFAULTPREFIX}help` }]
+    }
   }
 );
-
-// Allow environment variables to be accessed (allows the program to load the token via .env)
-require("dotenv").config();
 
 // Global variables
 client.config = require("../config.json");
