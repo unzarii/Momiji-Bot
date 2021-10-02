@@ -9,11 +9,6 @@ module.exports = (client) =>
   let activity = `awoo! | ${process.env.DEFAULTPREFIX}help`
 
   //Set the presence initially
-  client.user.setPresence({ activity: { name: activity } }).catch(console.error);
-
-  //Set the presence again every hour, just in case (as it seems to disappear after a while)
-  setInterval(() => {
-    client.user.setPresence({ activity: { name: activity } }).catch(console.error);
-  }, 3600000);
+  client.user.setPresence({ activities: [{ name: activity }] });
 }
 

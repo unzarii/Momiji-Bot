@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+const {Client, Permissions} = require("discord.js");
 const GetMemberFromArgument = require("../utilities/GetMemberFromArgument.js");
 const seedrandom = require("seedrandom");
 
@@ -8,9 +8,9 @@ module.exports =
   description: "Ship two members",
   execute(client, client_permissions, message, args)
   {
-    if(client_permissions.has("SEND_MESSAGES"))
+    if(client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
     {
-      if(client_permissions.has("EMBED_LINKS"))
+      if(client_permissions.has(Permissions.FLAGS.EMBED_LINKS))
       {
         if(args.length !== 2) //There must be two arguments (please change this to be handled by the event lol)
         {

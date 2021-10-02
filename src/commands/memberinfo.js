@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const {MessageEmbed, Permissions} = require('discord.js');
 const GetMemberFromArgument = require("../utilities/GetMemberFromArgument.js");
 const CalculateDurationBetweenDates = require("../utilities/CalculateDurationBetweenDates");
 
@@ -8,9 +8,9 @@ module.exports =
   description: "Display information about a member",
   execute(client, client_permissions, message, args)
   {
-    if(client_permissions.has("SEND_MESSAGES"))
+    if(client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
     {
-      if(client_permissions.has("EMBED_LINKS"))
+      if(client_permissions.has(Permissions.FLAGS.EMBED_LINKS))
       {
         let member;
 
@@ -34,7 +34,7 @@ module.exports =
         member_join_string = CalculateDurationBetweenDates(new Date(), member.joinedAt);
 
         //Construct and send the member info embed
-        const member_info = new Discord.MessageEmbed()
+        const member_info = new MessageEmbed()
           .setColor(0xe92134)
           .setTitle(member.user.tag)
           .setThumbnail(member.user.displayAvatarURL({dynamic: true}))
@@ -44,7 +44,7 @@ module.exports =
           .addField("Account Age:", member_age_string, false)
           .addField("ID:", member.id, false)
 
-        message.channel.send(member_info).catch(console.error);
+        message.channel.send({embeds:[member_info]}).catch(console.error);
       }
       else
       {

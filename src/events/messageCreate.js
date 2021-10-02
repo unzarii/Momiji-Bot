@@ -1,4 +1,5 @@
 require('dotenv').config();
+const {Permissions} = require("discord.js");
 const GetRandomFace = require("../utilities/GetRandomFace.js");
 const prefix = process.env.DEFAULTPREFIX;
 
@@ -33,7 +34,7 @@ module.exports = (client, message) =>
   }
 
   //Get and store the overall permissions that the bot has in the channel, taking into account overrides
-  const client_permissions = message.channel.memberPermissions(message.member.guild.me);
+  const client_permissions = message.channel.permissionsFor(client.user);
 
   //Is the message a command?
   if(message.content.startsWith(prefix))
@@ -45,7 +46,7 @@ module.exports = (client, message) =>
     //If the command is invalid then stop
     if(!client.commands.has(command))
     {
-      if(client_permissions.has("SEND_MESSAGES"))
+      if(client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
       {
         message.channel.send(`No such command exists! Try ${prefix}help.`).catch(console.error);
       }
@@ -63,7 +64,7 @@ module.exports = (client, message) =>
       console.log(`Failed to execute command: "${command}".`);
       console.error(error);
 
-      if(client_permissions.has("SEND_MESSAGES"))
+      if(client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
       {
         message.channel.send(`OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!`).catch(console.error);
       }
@@ -71,7 +72,7 @@ module.exports = (client, message) =>
   }
   else
   {
-    if(client_permissions.has("SEND_MESSAGES"))
+    if(client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
     {
       // --------------------------------
       // ----------- Meme HELL ----------
@@ -141,11 +142,7 @@ module.exports = (client, message) =>
           message.reply(`I think that you're wonderful ${GetRandomFace()}.`).catch(console.error);
           console.log(`Complimented my lovely owner in ${message.guild.name} (${message.guild.id}).`);
         }
-        else if(vip)
-        {
-          //Do nothing lol
-        }
-        else
+        else if(!vip)
         {
           message.reply("haha stinky").catch(console.error);
           console.log(`Bullied ${message.author.tag} in ${message.guild.name} (${message.guild.id}).`);

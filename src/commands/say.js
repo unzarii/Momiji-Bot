@@ -1,16 +1,17 @@
+const {Client, Permissions} = require("discord.js");
 module.exports =
 {
   name: "say",
   description: "I'll repeat after you",
   execute(client, client_permissions, message, args)
   {
-    if(client_permissions.has("SEND_MESSAGES"))
+    if(client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
     {
       if(args.length !== 0)
       {
         const output = args.join(" ");
 
-        if(client_permissions.has("MANAGE_MESSAGES"))
+        if(client_permissions.has(Permissions.FLAGS.MANAGE_MESSAGES))
         {
           message.delete().catch(console.error);;
         }
