@@ -62,6 +62,7 @@ fs.readdir("./src/events/", (err, files) =>
 });
 
 // For each command, load and store the functionality of the command
+// TODO: Possible to check whether the command has all required fields such as permissions, otherwise discard command.
 fs.readdir("./src/commands/", (err, files) =>
 {
   files.forEach(file =>

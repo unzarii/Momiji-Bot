@@ -39,7 +39,7 @@ module.exports = (client, message) =>
 
 
   // Get and store the overall permissions that the bot has in the channel, taking into account overrides
-  const client_permissions = message.channel.permissionsFor(client.user);
+  const client_permissions = message.channel.permissionsFor(message.guild.me);
 
   // Command handler
   if (message.content.startsWith(prefix))
@@ -58,7 +58,7 @@ module.exports = (client, message) =>
       return;
     }
 
-    // We do have that command, but now we have to check if the args are correct!
+    // Check if the command has the correct permissions and number of arguments.
     try
     {
       const min_args = client.commands.get(command).minimum_args;
@@ -66,7 +66,7 @@ module.exports = (client, message) =>
 
       if (actual_args < min_args)
       {
-        throw `Incorrect number of arguments. Expected at least: ${min_args}.`;
+        throw `Not enough arguments! I need at least ${min_args} (｡•́︿•̀｡)`;
       }
     }
     catch (error)
@@ -78,6 +78,36 @@ module.exports = (client, message) =>
 
       return;
     }
+
+
+
+    // Merge this with above try catch and potentially below try catch...?
+
+    // PERMISSIONS NOW
+    // TODO: potentially message the user who tried with the error? in the case that it is a send message issue?
+    try
+    {
+      const command_permissions = client.commands.get(command).permissions;
+
+      if (!client_permissions.has(command_permissions))
+      {
+        throw `I'm missing some of these permissions: \`${command_permissions}\`! (｡•́︿•̀｡)`;
+      }
+    }
+    catch (error)
+    {
+      if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
+      {
+        message.channel.send(error.toString()).catch(console.error);
+      }
+      console.log(error);
+
+      return;
+    }
+
+
+
+
 
 
     // Attempt to execute the command, and pass in the message and bot permissions for that channel

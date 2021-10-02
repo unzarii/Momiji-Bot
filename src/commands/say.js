@@ -1,29 +1,15 @@
-const { Permissions } = require("discord.js");
 module.exports =
 {
   name: "say",
   description: "I'll repeat after you",
   minimum_args: 1,
+  permissions: ["SEND_MESSAGES", "MANAGE_MESSAGES"],
   execute(client, client_permissions, message, args)
   {
-    if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
-    {
-      if (args.length !== 0)
-      {
-        const output = args.join(" ");
+    const output = args.join(" ");
+    message.delete().catch(console.error);
 
-        if (client_permissions.has(Permissions.FLAGS.MANAGE_MESSAGES))
-        {
-          message.delete().catch(console.error);
-        }
-
-        message.channel.send(output).catch(console.error);
-      }
-      else
-      {
-        message.channel.send("I can't say nothing!! (｡•́︿•̀｡)").catch(console.error);
-      }
-    }
+    message.channel.send(output).catch(console.error);
   }
 };
 

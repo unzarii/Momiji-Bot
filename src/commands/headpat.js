@@ -1,4 +1,3 @@
-const { Permissions } = require("discord.js");
 const GetRandomFace = require("../utilities/GetRandomFace.js");
 
 module.exports =
@@ -6,11 +5,9 @@ module.exports =
   name: "headpat",
   description: "so comfy",
   minimum_args: 0,
+  permissions: ["SEND_MESSAGES"],
   execute(client, client_permissions, message)
   {
-    if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
-    {
-      message.channel.send(`${GetRandomFace()}`).catch(console.error);
-    }
+    message.channel.send(`${GetRandomFace()}`).catch(console.error);
   }
 };

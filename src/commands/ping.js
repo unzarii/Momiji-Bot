@@ -1,14 +1,11 @@
-const { Permissions } = require("discord.js");
 module.exports =
 {
   name: "ping",
   description: "pong",
   minimum_args: 0,
+  permissions: ["SEND_MESSAGES"],
   execute(client, client_permissions, message)
   {
-    if (client_permissions.has(Permissions.FLAGS.SEND_MESSAGES))
-    {
-      message.channel.send("pong").catch(console.error);
-    }
+    message.channel.send("pong").catch(console.error);
   }
 };
