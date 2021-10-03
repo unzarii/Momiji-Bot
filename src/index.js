@@ -61,10 +61,11 @@ fs.readdir("./src/events/", (err, files) =>
   });
 });
 
-// For each command, load and store the functionality of the command
+
 // TODO: Possible to check whether the command has all required fields such as permissions, otherwise discard command.
 fs.readdir("./src/commands/", (err, files) =>
 {
+  // For each command, load and store the functionality of the command
   files.forEach(file =>
   {
     if (!file.endsWith(".js"))
@@ -75,30 +76,30 @@ fs.readdir("./src/commands/", (err, files) =>
     const command_handler = require(`./commands/${file}`);
     const command_name = file.split(".")[0];
     client.commands.set(command_name, command_handler);
-
-    // Generate help command strings
-    client.useful_commands = "";
-    client.fun_commands = "";
-
-    try
-    {
-      client.commands.forEach(command =>
-      {
-        if (command.category === "useful")
-        {
-          client.useful_commands += "**" + prefix + command.usage + "**\n*" + command.description + "*\n";
-        }
-        else if (command.category === "fun")
-        {
-          client.fun_commands += "**" + prefix + command.usage + "**\n*" + command.description + "*\n";
-        }
-      });
-    }
-    catch (error)
-    {
-      console.log(error);
-    }
   });
+
+  // Generate help command strings
+  client.useful_commands = "";
+  client.fun_commands = "";
+
+  try
+  {
+    client.commands.forEach(command =>
+    {
+      if (command.category === "useful")
+      {
+        client.useful_commands += "**" + prefix + command.usage + "**\n*" + command.description + "*\n";
+      }
+      else if (command.category === "fun")
+      {
+        client.fun_commands += "**" + prefix + command.usage + "**\n*" + command.description + "*\n";
+      }
+    });
+  }
+  catch (error)
+  {
+    console.log(error);
+  }
 });
 
 // Automatically attempts to login via the token set via .env
