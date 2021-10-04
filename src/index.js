@@ -49,6 +49,10 @@ client.database = createPool({
   database: process.env.DATABASE
 });
 
+// TODO: Check if the database is set up correctly
+// Is every table we need there?
+// For each table, do they have the correct columns?
+
 // For each event, load the functionality of the event and listen to it
 fs.readdir("./src/events/", (err, files) =>
 {

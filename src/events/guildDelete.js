@@ -1,28 +1,17 @@
+const Query = require("../utilities/Query.js");
 module.exports = (client, guild) =>
 {
-  client.database.query("SELECT serverid FROM servers WHERE serverid = ?", guild.id, (error, result) =>
+  // Unreliable as it may not fire due to the bot being offline.
+  // Worth clearing records sooner than later though I feel.
+
+  Query(client, "SELECT serverid FROM servers WHERE serverid = ?", guild.id).then(result =>
   {
-    if (error)
+    if (result.length > 0)
     {
-      console.error(error);
-      return;
-    }
-
-    if (result.length < 1)
-    {
-      // If there are no results, don't bother.
-      return;
-    }
-
-    client.database.query("DELETE FROM servers WHERE serverid = ?", guild.id, (err) =>
-    {
-      if (err)
+      Query(client, "DELETE FROM servers WHERE serverid = ?", guild.id).then(res =>
       {
-        console.error(err);
-        return;
-      }
-
-      console.log(`Deleted ${guild.name} (${guild.id}) from the database.`);
-    });
+        console.log(`Deleted ${guild.name} (${guild.id}) from the database.`);
+      });
+    }
   });
 };

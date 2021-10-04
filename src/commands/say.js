@@ -13,5 +13,3 @@ module.exports =
     message.channel.send(output).catch(console.error);
   }
 };
-
-// TODO remove the argument / permission check when the min/max arguments are actually respected via the command handler

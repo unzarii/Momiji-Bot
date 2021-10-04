@@ -1,29 +1,17 @@
+const Query = require("../utilities/Query.js");
 module.exports = (client, guild) =>
 {
-  client.database.query("SELECT serverid FROM servers WHERE serverid = ?", guild.id, (error, result) =>
+  // TODO: This is probably totally unnecessary as I need to check via messageCreate anyway.
+  // Unreliable as it may not fire due to the bot being offline.
+
+  Query(client, "SELECT serverid FROM servers WHERE serverid = ?", guild.id).then(result =>
   {
-    if (error)
+    if (result.length < 1)
     {
-      console.error(error);
-      return;
-    }
-
-    if (result.length > 0)
-    {
-      // If the server already exists, don't bother
-      return;
-    }
-
-    client.database.query("INSERT INTO servers SET serverid = ?", guild.id, (err) =>
-    {
-      if (err)
+      Query(client, "INSERT INTO servers SET serverid = ?", guild.id).then(res =>
       {
-        console.error(err);
-        return;
-      }
-
-      console.log(`Added ${guild.name} (${guild.id}) to the database.`);
-    });
+        console.log(`Added ${guild.name} (${guild.id}) to the database.`);
+      });
+    }
   });
 };
-
