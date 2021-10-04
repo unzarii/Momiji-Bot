@@ -7,6 +7,7 @@ Yet another bot, this time in the theme of a popular Touhou character
 - dotenv@8.6.0
 - moment@2.29.1
 - seedrandom@3.0.5
+- mysql@2.18.1
 
 For hosting on Linux:
 - pm2 v4.2.3

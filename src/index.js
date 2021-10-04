@@ -1,8 +1,11 @@
-// Init
-const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
+const { createPool } = require ("mysql");
+
 require("dotenv").config();
 const prefix = process.env.DEFAULTPREFIX;
+
+const fs = require("fs");
+
 const client = new Client
 (
   {
@@ -36,6 +39,15 @@ const client = new Client
 // Global variables
 client.config = require("../config.json");
 client.commands = new Collection();
+
+// 10 is total arbitrary
+client.database = createPool({
+  connectionLimit: 10,
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE
+});
 
 // For each event, load the functionality of the event and listen to it
 fs.readdir("./src/events/", (err, files) =>
