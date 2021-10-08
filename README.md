@@ -4,7 +4,6 @@ Yet another bot, this time in the theme of a popular Touhou character
 # Required Stuff
 - Node v16.10.0
 - discord.js@13.1.0
-- dotenv@8.6.0
 - moment@2.29.1
 - seedrandom@3.0.5
 - mysql@2.18.1
