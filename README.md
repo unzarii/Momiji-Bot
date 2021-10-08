@@ -24,6 +24,9 @@ You'll have to Google how to install these, but just ensure that node_modules is
 Warning:
 If you are using Linux, .env will not show up in the directory unless you use the command "ls -a". Do not worry, it is still there.
 
+Warning:
+I have yet to update this repository with a mysql file containing the database structure. The bot *will* crash on certain actions without it.
+
 # How to host via Linux
 - Follow this guide: https://youtu.be/kpci6V8969g (this works for hosted VMs also)
 - Ensure that you run pm2 from the ROOT DIRECTORY of this bot otherwise it will not detect the .env file
