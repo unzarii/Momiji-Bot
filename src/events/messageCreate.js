@@ -1,7 +1,5 @@
-require("dotenv").config();
 const { Permissions } = require("discord.js");
 const GetRandomFace = require("../utilities/GetRandomFace.js");
-const prefix = process.env.DEFAULTPREFIX;
 
 module.exports = (client, message) =>
 {
@@ -17,21 +15,23 @@ module.exports = (client, message) =>
     return;
   }
 
-  // If the message author is somehow no longer a member of the server (it was somehow null once)
-  if (message.member === null)
-  {
-    return;
-  }
-
   if (message.guild.available === false)
   {
     console.log("Server Outage");
     return;
   }
 
+  // If the message author is somehow no longer a member of the server (it was somehow null once)
+  if (message.member === null)
+  {
+    return;
+  }
+
   // Get and store the overall permissions that the bot has in the channel, taking into account overrides
   // So we can send messages / perform command permission checking
   const client_permissions = message.channel.permissionsFor(message.guild.me);
+
+  const prefix = client.config.default_prefix;
 
   if (message.content.startsWith(prefix))
   {

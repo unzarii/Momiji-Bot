@@ -1,6 +1,11 @@
 {
+  "token": "",
+  "default_prefix": "",
+  "host": "",
+  "user": "",
+  "password": "",
+  "database": "",
   "owner": "",
   "vips": {
-    "a_vip": "",
   }
 }

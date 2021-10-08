@@ -1,9 +1,6 @@
 const { Client, Collection, Intents } = require("discord.js");
 const { createPool } = require ("mysql");
 
-require("dotenv").config();
-const prefix = process.env.DEFAULTPREFIX;
-
 const fs = require("fs");
 
 const client = new Client
@@ -31,7 +28,7 @@ const client = new Client
     presence:
     {
       status: "online",
-      activities: [{ name: `awoo! | ${prefix}help` }]
+      activities: [{ name: "awoo! | m!help" }]
     }
   }
 );
@@ -43,10 +40,10 @@ client.commands = new Collection();
 // 10 is total arbitrary
 client.database = createPool({
   connectionLimit: 10,
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
+  host: client.config.host,
+  user: client.config.user,
+  password: client.config.password,
+  database: client.config.database
 });
 
 // TODO: Check if the database is set up correctly
@@ -98,17 +95,19 @@ fs.readdir("./src/commands/", (err, files) =>
   client.useful_commands = "";
   client.fun_commands = "";
 
+
+  // TODO: This must be moved (to messageCreate?) so we can modify the prefix based on the stored db prefix of the server / default wherever that exists (.env?)
   try
   {
     client.commands.forEach(command =>
     {
       if (command.category === "useful")
       {
-        client.useful_commands += "**" + prefix + command.usage + "**\n*" + command.description + "*\n";
+        client.useful_commands += "**" + client.config.default_prefix + command.usage + "**\n*" + command.description + "*\n";
       }
       else if (command.category === "fun")
       {
-        client.fun_commands += "**" + prefix + command.usage + "**\n*" + command.description + "*\n";
+        client.fun_commands += "**" + client.config.default_prefix + command.usage + "**\n*" + command.description + "*\n";
       }
     });
   }
@@ -119,4 +118,4 @@ fs.readdir("./src/commands/", (err, files) =>
 });
 
 // Automatically attempts to login via the token set via .env
-client.login(process.env.TOKEN);
+client.login(client.config.token);

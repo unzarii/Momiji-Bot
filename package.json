@@ -10,7 +10,6 @@
   "author": "Oniisama",
   "dependencies": {
     "discord.js": "^13.1.0",
-    "dotenv": "^8.6.0",
     "moment": "^2.29.1",
     "mysql": "^2.18.1",
     "node-opus": "^0.3.3",
