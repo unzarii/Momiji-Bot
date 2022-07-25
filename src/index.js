@@ -37,19 +37,6 @@ const client = new Client
 client.config = require("../config.json");
 client.commands = new Collection();
 
-// 10 is total arbitrary
-client.database = createPool({
-  connectionLimit: 10,
-  host: client.config.host,
-  user: client.config.user,
-  password: client.config.password,
-  database: client.config.database
-});
-
-// TODO: Check if the database is set up correctly
-// Is every table we need there?
-// For each table, do they have the correct columns?
-
 // For each event, load the functionality of the event and listen to it
 fs.readdir("./src/events/", (err, files) =>
 {

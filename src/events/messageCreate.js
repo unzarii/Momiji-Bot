@@ -48,7 +48,6 @@ module.exports = (client, message) =>
       return;
     }
 
-    // We have the try as we need to access the command attributes I guess...?
     try
     {
       // Check permissions
