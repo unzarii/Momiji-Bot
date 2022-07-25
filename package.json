@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "author": "Oniisama",
+  "author": "Unzarii",
   "dependencies": {
     "discord.js": "^13.1.0",
     "moment": "^2.29.4",
