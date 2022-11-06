@@ -3,40 +3,40 @@ const seedrandom = require("seedrandom");
 
 module.exports =
 {
-  usage: "ship <arg 1> <arg 2>",
-  description: "Ships two members ♥",
+  usage: "diagnose <arg>",
+  description: "Diagnose someone's current cringe level!",
   category: "fun",
-  minimum_args: 2,
+  minimum_args: 1,
   permissions: ["SEND_MESSAGES"],
   execute(client, client_permissions, message, args)
   {
     // Crap but here we check whether the argument is a ping, and if it is we replace the argument with the member's name instead
     // Unintended side effect of the function: this makes using IDs valid as GetMemberFromArgument also handles those
     const member = GetMemberFromArgument(message, args[0]);
-    const member1 = GetMemberFromArgument(message, args[1]);
 
+    //It probably is disgusting that I'm reassigning args like this but I don't need it anymore sooo
     if (member)
     {
       args[0] = member.displayName;
     }
 
-    if (member1)
-    {
-      args[1] = member1.displayName;
-    }
-
-    // Before we add the arguments to the seed, sort them so that any combination of left/right will be the same
-    const lovers = [args[0], args[1]];
-    lovers.sort();
-
-    // Create a seed with the current date, and the sorted names of the people being shipped.
+    // Create a seed with the current date, the name of the person being diagnosed, and the "cringe" string so that it doesn't somehow overlap with other commands.
     const now = new Date();
-    const seed = [now.toDateString(), lovers[0], lovers[1]].join(":");
+    const seed = [now.toDateString(), args[0], "cringe"].join(":");
 
     // Use seedrandom script to generate a seeded random, and transform into a "percentage"
     const rng = seedrandom(seed);
     const percentage = (Math.round(rng() * 100));
-
-    message.channel.send("**" + args[0] + "** & **" + args[1] + "**: " + percentage + "% Match").catch(console.error);
+    
+    // Build response
+    let response = "I diagnose **" + args[0] + "** to have a cringe level of: " + percentage + "%!";
+    
+    if (percentage > 80)
+    {
+        response += "\n /!\\ Critical levels of cringe detected! /!\\"
+    }
+    
+    message.channel.send(response).catch(console.error);
+    
   }
 };
