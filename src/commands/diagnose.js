@@ -3,10 +3,10 @@ const seedrandom = require("seedrandom");
 
 module.exports =
 {
-  usage: "diagnose <arg>",
-  description: "Diagnose someone's current cringe level!",
+  usage: "diagnose <person> <condition>",
+  description: "Diagnose someone for a condition!",
   category: "fun",
-  minimum_args: 1,
+  minimum_args: 2,
   permissions: ["SEND_MESSAGES"],
   execute(client, client_permissions, message, args)
   {
@@ -22,18 +22,18 @@ module.exports =
 
     // Create a seed with the current date, the name of the person being diagnosed, and the "cringe" string so that it doesn't somehow overlap with other commands.
     const now = new Date();
-    const seed = [now.toDateString(), args[0], "cringe"].join(":");
+    const seed = [now.toDateString(), args[0], args[1], "cringe"].join(":");
 
     // Use seedrandom script to generate a seeded random, and transform into a "percentage"
     const rng = seedrandom(seed);
     const percentage = (Math.round(rng() * 100));
     
     // Build response
-    let response = "I diagnose **" + args[0] + "** to have a cringe level of: " + percentage + "%!";
+    let response = "I diagnose **" + args[0] + "** to have a **" + args[1] + "** level of: " + percentage + "%!";
     
     if (percentage > 80)
     {
-        response += "\n /!\\ Critical levels of cringe detected! /!\\"
+        response += "\n /!\\ Critical levels of **" + args[1] + "** detected! /!\\"
     }
     
     message.channel.send(response).catch(console.error);

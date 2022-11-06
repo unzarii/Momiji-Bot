@@ -3,7 +3,7 @@ const seedrandom = require("seedrandom");
 
 module.exports =
 {
-  usage: "ship <arg 1> <arg 2>",
+  usage: "ship <lover 1> <lover 2>",
   description: "Ships two members ♥",
   category: "fun",
   minimum_args: 2,
@@ -15,6 +15,7 @@ module.exports =
     const member = GetMemberFromArgument(message, args[0]);
     const member1 = GetMemberFromArgument(message, args[1]);
 
+    //It probably is disgusting that I'm reassigning args like this but I don't need it anymore sooo
     if (member)
     {
       args[0] = member.displayName;
@@ -31,7 +32,7 @@ module.exports =
 
     // Create a seed with the current date, and the sorted names of the people being shipped.
     const now = new Date();
-    const seed = [now.toDateString(), lovers[0], lovers[1]].join(":");
+    const seed = [now.toDateString(), lovers[0], lovers[1], "ship"].join(":");
 
     // Use seedrandom script to generate a seeded random, and transform into a "percentage"
     const rng = seedrandom(seed);
