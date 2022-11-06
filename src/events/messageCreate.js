@@ -2,7 +2,7 @@ const { Permissions } = require("discord.js");
 const GetRandomFace = require("../utilities/GetRandomFace.js");
 
 module.exports = (client, message) =>
-{
+{  
   if (message.author.bot === true)
   {
     return;
@@ -87,7 +87,7 @@ module.exports = (client, message) =>
     // --------------------------------
     // ----------- Meme HELL ----------
     // --------------------------------
-
+    
     // Prepare message.content for case insensitive checks
     const message_lowercase = message.content.toLowerCase();
 

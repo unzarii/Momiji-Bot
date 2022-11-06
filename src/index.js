@@ -83,6 +83,7 @@ fs.readdir("./src/commands/", (err, files) =>
   client.fun_commands = "";
 
 
+  // This looks to be related to the help command or something
   // TODO: This must be moved (to messageCreate?) so we can modify the prefix based on the stored db prefix of the server / default wherever that exists (.env?)
   try
   {

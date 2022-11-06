@@ -15,8 +15,6 @@ module.exports = function(message, arg)
     }
   }
 
-  console.log(arg);
-
   // Return the attempt to turn the ID into a member
   return message.guild.members.cache.get(arg);
 };
