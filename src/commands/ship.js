@@ -37,7 +37,16 @@ module.exports =
     // Use seedrandom script to generate a seeded random, and transform into a "percentage"
     const rng = seedrandom(seed);
     const percentage = (Math.round(rng() * 100));
+    
+    const output = "**" + args[0] + "** & **" + args[1] + "**: " + percentage + "% Match";
 
-    message.channel.send("**" + args[0] + "** & **" + args[1] + "**: " + percentage + "% Match").catch(console.error);
+    if (output.length > 2000)
+    {
+        message.channel.send("fuck off lmao").catch(console.error);
+    }
+    else
+    {
+        message.channel.send(output).catch(console.error);
+    }
   }
 };

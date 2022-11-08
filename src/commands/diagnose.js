@@ -52,14 +52,20 @@ module.exports =
     let an_or_a = vowels.includes(Array.from(condition)[0]) ? "an" : "a";
     
     // Build response. I know, it's fucking disgusting
-    let response = "**" + args[0] + "** has "+ an_or_a + " **" + condition + "** level of: "+ percentage + "%! ";
+    const output = "**" + args[0] + "** has "+ an_or_a + " **" + condition + "** level of: "+ percentage + "%! ";
     
     if (percentage > 80)
     {
-        response += "\n /!\\ Critical levels of **" + condition + "** detected! /!\\"
+        output += "\n /!\\ Critical levels of **" + condition + "** detected! /!\\"
     }
     
-    message.channel.send(response).catch(console.error);
-    
+    if (output.length > 2000)
+    {
+        message.channel.send("fuck off lmao").catch(console.error);
+    }
+    else
+    {
+        message.channel.send(output).catch(console.error);
+    }
   }
 };

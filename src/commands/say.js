@@ -10,6 +10,13 @@ module.exports =
     const output = args.join(" ");
     message.delete().catch(console.error);
 
-    message.channel.send(output).catch(console.error);
+    if (output.length > 2000)
+    {
+        message.channel.send("fuck off lmao").catch(console.error);
+    }
+    else
+    {
+        message.channel.send(output).catch(console.error);
+    }
   }
 };
