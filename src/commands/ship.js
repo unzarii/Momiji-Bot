@@ -3,7 +3,7 @@ const seedrandom = require("seedrandom");
 
 module.exports =
 {
-  usage: "ship <lover 1> <lover 2>",
+  usage: "ship <ping/id> <lover 2 (can be a ping or a phrase)>",
   description: "Ships two members ♥",
   category: "fun",
   minimum_args: 2,
@@ -15,19 +15,49 @@ module.exports =
     const member = GetMemberFromArgument(message, args[0]);
     const member1 = GetMemberFromArgument(message, args[1]);
 
+    // Check that the first lover is an actual ping
     //It probably is disgusting that I'm reassigning args like this but I don't need it anymore sooo
     if (member)
     {
       args[0] = member.displayName;
     }
-
-    if (member1)
+    else
     {
-      args[1] = member1.displayName;
+        // TODO: Throw a proper error
+        message.channel.send("Sorry! The first argument has to be a ping or an id!!! (｡•́︿•̀｡)").catch(console.error);
+        return;
     }
+    
+    
+    // Construct the second lover
+    // Get every arg after the name and turn it into a single variable.
+    let partner = "";
+    args.forEach((arg, index) =>
+    {
+        if (index != 0)
+        {
+            // Check if the argument is a member
+            // And determine whether to add the argument normally or add from said member's display name
+            const loop_member = GetMemberFromArgument(message, arg);
+            if (loop_member)
+            {
+                partner += loop_member.displayName;
+            }
+            else
+            {
+                partner += arg;
+            }
+                           
+            // Add a space if needed lol
+            if (index != args.length - 1)
+            {
+                partner += " ";
+            }
+        }
+    });
 
-    // Before we add the arguments to the seed, sort them so that any combination of left/right will be the same
-    const lovers = [args[0], args[1]];
+    // Before we add the lovers to the seed, sort them so that any combination of left/right will be the same
+    const lovers = [args[0], partner];
     lovers.sort();
 
     // Create a seed with the current date, and the sorted names of the people being shipped.
@@ -38,7 +68,7 @@ module.exports =
     const rng = seedrandom(seed);
     const percentage = (Math.round(rng() * 100));
     
-    const output = "**" + args[0] + "** & **" + args[1] + "**: " + percentage + "% Match";
+    const output = "**" + args[0] + "** & **" + partner + "**: " + percentage + "% Match";
 
     if (output.length > 2000)
     {
