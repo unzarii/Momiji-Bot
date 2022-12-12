@@ -4,7 +4,7 @@ const CalculateDurationBetweenDates = require("../utilities/CalculateDurationBet
 
 module.exports =
 {
-  usage: "memberinfo <(optional) member>",
+  usage: "memberinfo <(optional) ping>",
   description: "Displays information about a member.",
   category: "useful",
   minimum_args: 0,

@@ -99,7 +99,7 @@ function NewTurn(message, attacker, defender)
 
 module.exports =
 {
-  usage: "battle <ping/id> <ping/id> (optional)",
+  usage: "battle <ping> <(optional) ping>",
   description: "Initiates a battle between two players!",
   category: "fun",
   minimum_args: 1,
