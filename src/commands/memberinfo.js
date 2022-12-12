@@ -14,7 +14,7 @@ module.exports =
     let member;
 
     // User is attempting to get their own information
-    if (args.length === 0)
+    if (args.length == 0)
     {
       member = message.member;
     }

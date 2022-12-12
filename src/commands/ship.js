@@ -3,7 +3,7 @@ const seedrandom = require("seedrandom");
 
 module.exports =
 {
-  usage: "ship <ping/id> <lover 2 (can be a ping or a phrase)>",
+  usage: "ship <ping/id> <ping/id/phrase>",
   description: "Ships two members ♥",
   category: "fun",
   minimum_args: 2,
@@ -16,12 +16,7 @@ module.exports =
     const member1 = GetMemberFromArgument(message, args[1]);
 
     // Check that the first lover is an actual ping
-    //It probably is disgusting that I'm reassigning args like this but I don't need it anymore sooo
-    if (member)
-    {
-      args[0] = member.displayName;
-    }
-    else
+    if (!member)
     {
         // TODO: Throw a proper error
         message.channel.send("Sorry! The first argument has to be a ping or an id!!! (｡•́︿•̀｡)").catch(console.error);
@@ -47,7 +42,7 @@ module.exports =
             {
                 partner += arg;
             }
-                           
+
             // Add a space if needed lol
             if (index != args.length - 1)
             {
@@ -57,7 +52,7 @@ module.exports =
     });
 
     // Before we add the lovers to the seed, sort them so that any combination of left/right will be the same
-    const lovers = [args[0], partner];
+    const lovers = [member.displayName, partner];
     lovers.sort();
 
     // Create a seed with the current date, and the sorted names of the people being shipped.
@@ -68,7 +63,7 @@ module.exports =
     const rng = seedrandom(seed);
     const percentage = (Math.round(rng() * 100));
     
-    const output = "**" + args[0] + "** & **" + partner + "**: " + percentage + "% Match";
+    const output = "**" + member.displayName + "** & **" + partner + "**: " + percentage + "% Match";
 
     if (output.length > 2000)
     {
