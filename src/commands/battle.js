@@ -1,25 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const GetMemberFromArgument = require("../utilities/GetMemberFromArgument.js");
 
-const skip_moves = 
-[
-    "falls over and misses their turn!",
-    "misses their attack!",
-    "is so distracted by their opponent's charm that they forget to attack!",
-    "tries making friends but to no avail!", "is too scared to attack!",
-    "wants to give their opponent a chance, so does nothing.",
-    "forgets to attack due to how stupid their opponent looks.",
-    "is distracted by a butterfly."
-];
-const power_up_moves =
-[
-    "prepares to make a powerful attack.",
-    "readies their weapon for a powerful attack.",
-    "prays to the heavens that their next attack will do more damage.",
-    "covers their weapon in something really disgusting.",
-    "gathers all of their might for their next attack."
-];
-
 const base_damage = 15; // Out of 100
 const boost_damage = base_damage + 5; // +5 to average the 10 variance - this makes both normal and powerful have the same "average". Powerful is more consistent but less rewarding/punishing.
 
@@ -32,7 +13,7 @@ const boost_damage = base_damage + 5; // +5 to average the 10 variance - this ma
 function NewTurn(message, attacker, defender)
 {
     let output = "";
-    
+
     // Select move
     let rand = Math.random() * 2;
     rand = Math.floor(rand);
@@ -59,26 +40,55 @@ function NewTurn(message, attacker, defender)
 
             defender.hp -= damage;
             
-            output += "**"  + attacker.displayName + "** strikes **" + defender.displayName;
+            let damage_amount = "";
             
             if (attacker.base_damage == base_damage)
             {
-                output += "** for **" + damage + "** points. \n";
+                damage_amount = `**${damage}** points`;
             }
             else if (attacker.base_damage == base_damage + boost_damage)
             {
-                output += "** for a powerful **" + damage + "** points. \n";
+                damage_amount = `a powerful **${damage}** points`;
             }
             else if (attacker.base_damage == base_damage + boost_damage * 2)
             {
-                output += "** for an extra powerful **" + damage + "** points. \n";
+                damage_amount = `an extra powerful **${damage}** points`;
             }
+            
+            const damage_moves =
+            [
+                `**${attacker.displayName}** strikes **${defender.displayName}** for ${damage_amount}.\n`,
+                `**${attacker.displayName}** drops, slides under **${defender.displayName}**'s legs and attacks their groin for ${damage_amount}.\n`,
+                `**${attacker.displayName}** drops their weapon and pours ${damage_amount} worth of acid into **${defender.displayName}**'s mouth.\n`,
+                `**${attacker.displayName}** rushes **${defender.displayName}** and slams into them for ${damage_amount}.\n`,
+                `**${defender.displayName}** loses track of **${attacker.displayName}**. **${attacker.displayName}** whispers "Nothing personnel kid" into their ear from behind, before stabbing them for ${damage_amount}.\n`,
+                `**${attacker.displayName}** slashes **${defender.displayName}** for ${damage_amount}.\n`,
+                `**${attacker.displayName}** crushes **${defender.displayName}** for ${damage_amount}.\n`,
+                `**${attacker.displayName}** realises that they can use any weapon. So they fire ***__lasers__*** from their eyes at **${defender.displayName}** for ${damage_amount}.\n`,
+            ]
+            
+            // Choose a random damage move
+            rand = Math.floor(Math.random() * damage_moves.length);
+            output += damage_moves[rand]; //+= for critical hits
         }
         else
         {
+            const skip_moves = 
+            [
+                `**${attacker.displayName}** falls over and misses their turn!\n`,
+                `**${attacker.displayName}** misses their attack!\n`,
+                `**${attacker.displayName}** is so distracted by **${defender.displayName}**'s charm that they forget to attack!\n`,
+                `**${attacker.displayName}** tries making friends with **${defender.displayName}** but to no avail!\n`,
+                `**${attacker.displayName}** is too scared of **${defender.displayName}** to attack!\n`,
+                `**${attacker.displayName}** wants to give **${defender.displayName}** a chance, so does nothing.\n`,
+                `**${attacker.displayName}** forgets to attack due to how stupid **${defender.displayName}** looks.\n`,
+                `**${attacker.displayName}** is distracted by a butterfly.\n`,
+                `**${attacker.displayName}** strikes **${defender.displayName}** for 0 damage. **${defender.displayName}** laughs at them.\n`
+            ];
+            
             // Choose a random excuse
             rand = Math.floor(Math.random() * skip_moves.length);
-            output = "**"  + attacker.displayName + "** " + skip_moves[rand] + "\n";
+            output = skip_moves[rand];
         }
         
         //Reset the base damage. So sad if they've charged it for two moves and then missed lmao.
@@ -89,15 +99,28 @@ function NewTurn(message, attacker, defender)
         // Don't let them do this if they've already done it twice
         if (attacker.base_damage >= base_damage + boost_damage * 2)
         {
-            output = "**"  + attacker.displayName + "** tries to power up even further, but is already at their limit!\n";
+            //TODO: Add variance
+            output = `**${attacker.displayName}** tries to power up even further, but is already at their limit!\n`;
         }
         else
         {
+            attacker.base_damage += boost_damage;
+            
+            const power_up_moves =
+            [
+                `**${attacker.displayName}** prepares to make a powerful attack.\n`,
+                `**${attacker.displayName}** readies their weapon for a powerful attack.\n`,
+                `**${attacker.displayName}** prays to the heavens that their next attack will do more damage.\n`,
+                `**${attacker.displayName}** covers their weapon in something really disgusting.\n`,
+                `**${attacker.displayName}** gathers all of their might for their next attack.\n`,
+                `**${attacker.displayName}** takes a deep breath, gathering their energy.\n`,
+                `**${attacker.displayName}** is now motivated!\n`,
+                `**${attacker.displayName}** performs some sick secret ninjutsu techniques.\n`,
+            ];
+    
             // Choose a random power up speech
             rand = Math.floor(Math.random() * power_up_moves.length);
-            output = "**"  + attacker.displayName + "** " + power_up_moves[rand] + "\n";
-            
-            attacker.base_damage += boost_damage;
+            output = power_up_moves[rand];
         }
     }
 
@@ -168,11 +191,11 @@ module.exports =
         
         if (player_1.id == 822173127311884299)
         {
-            battle_results.setDescription(output += "**"  + player_1.displayName + "** strikes **" + player_2.displayName + "** for a godlike **" + 9999 + "** points. \n**" + player_2.displayName + "** is defeated! **" + player_1.displayName + "** wins!");
+            battle_results.setDescription(output += `**${player_1.displayName}** strikes **${player_2.displayName}** for a godlike **9999** points. \n**${player_2.displayName}** is defeated! **${player_1.displayName}** wins!`);
         }
         else if (player_2.id == 822173127311884299)
         {
-            battle_results.setDescription(output += "**"  + player_2.displayName + "** strikes **" + player_1.displayName + "** for a godlike **" + 9999 + "** points. \n**" + player_1.displayName + "** is defeated! **" + player_2.displayName + "** wins!");
+            battle_results.setDescription(output += `**${player_2.displayName}** strikes **${player_1.displayName}** for a godlike **9999** points. \n**${player_1.displayName}** is defeated! **${player_2.displayName}** wins!`);
         }
 
         message.channel.send({ embeds: [battle_results] }).catch(console.error);
@@ -186,8 +209,8 @@ module.exports =
         
         if (player_2.hp <= 0)
         {
-            output += "[**" + player_1.displayName + "**: " + player_1.hp + "HP **" + player_2.displayName + "**: " + player_2.hp + "HP]\n";
-            output += "**" + player_2.displayName + "** is defeated! **" + player_1.displayName + "** wins!";
+            output += `[**${player_1.displayName}**: ${player_1.hp}HP **${player_2.displayName}**: ${player_2.hp}HP]\n\n`;
+            output += `**${player_2.displayName}** is defeated! **${player_1.displayName}** wins!`;
             break;
         }
         
@@ -196,12 +219,12 @@ module.exports =
         
         if (player_1.hp <= 0)
         {
-            output += "[**" + player_1.displayName + "**: " + player_1.hp + "HP **" + player_2.displayName + "**: " + player_2.hp + "HP]\n";
-            output += "**" + player_1.displayName + "** is defeated! **" + player_2.displayName + "** wins!";
+            output += `[**${player_1.displayName}**: ${player_1.hp}HP **${player_2.displayName}**: ${player_2.hp}HP]\n\n`;
+            output += `**${player_1.displayName}** is defeated! **${player_2.displayName}** wins!`;
             break;
         }
         
-        output += "[**" + player_1.displayName + "**: " + player_1.hp + "HP **" + player_2.displayName + "**: " + player_2.hp + "HP]\n\n";
+        output += `[**${player_1.displayName}**: ${player_1.hp}HP **${player_2.displayName}**: ${player_2.hp}HP]\n\n`;
         turn++;
     }
 
@@ -214,7 +237,7 @@ module.exports =
     {
         const battle_results = new MessageEmbed()
           .setColor(0xe92134)
-          .setTitle(player_1.displayName + " versus " + player_2.displayName)
+          .setTitle(`${player_1.displayName} versus ${player_2.displayName}`)
           .setDescription(output);
 
         message.channel.send({ embeds: [battle_results] }).catch(console.error);
