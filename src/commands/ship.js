@@ -3,7 +3,7 @@ const seedrandom = require("seedrandom");
 
 module.exports =
 {
-  usage: "ship <ping/id> <ping/id/phrase>",
+  usage: "ship <ping> <ping/phrase>",
   description: "Ships two members ♥",
   category: "fun",
   minimum_args: 2,
@@ -19,7 +19,7 @@ module.exports =
     if (!member)
     {
         // TODO: Throw a proper error
-        message.channel.send("Sorry! The first argument has to be a ping or an id!!! (｡•́︿•̀｡)").catch(console.error);
+        message.channel.send("Sorry! The first argument has to be a ping!!! (｡•́︿•̀｡)").catch(console.error);
         return;
     }
     
