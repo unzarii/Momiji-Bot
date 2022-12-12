@@ -21,6 +21,13 @@ const power_up_moves =
 ];
 
 const base_damage = 15; // Out of 100
+const boost_damage = base_damage + 5; // +5 to average the 10 variance - this makes both normal and powerful have the same "average". Powerful is more consistent but less rewarding/punishing.
+
+/*
+        15 + 10 = 15-25		(average 20 over 1)
+(+20)	35 + 10 = 35-45 	(average 20 over 2)
+(+40)	55 + 10 = 55-65 	(average 20 over 3)
+*/
 
 function NewTurn(message, attacker, defender)
 {
@@ -54,15 +61,15 @@ function NewTurn(message, attacker, defender)
             
             output += "**"  + attacker.displayName + "** strikes **" + defender.displayName;
             
-            if (attacker.base_damage == 15)
+            if (attacker.base_damage == base_damage)
             {
                 output += "** for **" + damage + "** points. \n";
             }
-            else if (attacker.base_damage == 30)
+            else if (attacker.base_damage == base_damage + boost_damage)
             {
                 output += "** for a powerful **" + damage + "** points. \n";
             }
-            else if (attacker.base_damage == 45)
+            else if (attacker.base_damage == base_damage + boost_damage * 2)
             {
                 output += "** for an extra powerful **" + damage + "** points. \n";
             }
@@ -80,7 +87,7 @@ function NewTurn(message, attacker, defender)
     else if (rand == 1) // Power up for a powerful attack (+10 then +10 again - max is 35)
     {
         // Don't let them do this if they've already done it twice
-        if (attacker.base_damage >= 45)
+        if (attacker.base_damage >= base_damage + boost_damage * 2)
         {
             output = "**"  + attacker.displayName + "** tries to power up even further, but is already at their limit!\n";
         }
@@ -90,7 +97,7 @@ function NewTurn(message, attacker, defender)
             rand = Math.floor(Math.random() * power_up_moves.length);
             output = "**"  + attacker.displayName + "** " + power_up_moves[rand] + "\n";
             
-            attacker.base_damage += 15;
+            attacker.base_damage += boost_damage;
         }
     }
 
