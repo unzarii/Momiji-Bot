@@ -119,11 +119,11 @@ module.exports =
     }
     
     // Ensure that a player isn't battling themselves - with how I've set hp and stuff it totally breaks it lmao.
-    /*if (player_1 == player_2)
+    if (player_1 == player_2)
     {
         message.channel.send("I won't allow someone to battle themselves!!! (｡•́︿•̀｡)").catch(console.error);
         return;
-    }*/
+    }
     
     player_1.base_damage = base_damage;
     player_2.base_damage = base_damage;
