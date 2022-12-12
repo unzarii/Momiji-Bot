@@ -1,6 +1,7 @@
+const { MessageEmbed } = require("discord.js");
 const GetMemberFromArgument = require("../utilities/GetMemberFromArgument.js");
 
-const skip_moves = ["falls over and misses their turn!", "misses their attack!", "is so distracted by their opponent's charm that they forget to attack!", "tries making friends but to no avail!", "is too scared to attack!", "wants to give their opponent a chance, so does nothing."];
+const skip_moves = ["falls over and misses their turn!", "misses their attack!", "is so distracted by their opponent's charm that they forget to attack!", "tries making friends but to no avail!", "is too scared to attack!", "wants to give their opponent a chance, so does nothing.", "forgets to attack due to how stupid their opponent looks.", "is distracted by a butterfly."];
 const power_up_moves = ["prepares to make a powerful attack.", "readies their weapon for a powerful attack.", "prays to the heavens that their next attack will do more damage.", "covers their weapon in something really disgusting.", "gathers all of their might for their next attack."];
 
 const base_damage = 15; // Out of 100
@@ -117,18 +118,18 @@ module.exports =
         return;
     }
     
-    // Ensure that a player isn't battling themselves
-    if (player_1 == player_2)
+    // Ensure that a player isn't battling themselves - with how I've set hp and stuff it totally breaks it lmao.
+    /*if (player_1 == player_2)
     {
         message.channel.send("I won't allow someone to battle themselves!!! (｡•́︿•̀｡)").catch(console.error);
         return;
-    }
+    }*/
     
     player_1.base_damage = base_damage;
     player_2.base_damage = base_damage;
 
-    player_1.hp = 100;
-    player_2.hp = 100;
+    player_1.hp = 150;
+    player_2.hp = 150;
     
     let output = "";
     let turn = 1;
@@ -138,19 +139,20 @@ module.exports =
     {
         output += "You dare challenge me??? (｡•́︿•̀｡)\n";
         
+        const battle_results = new MessageEmbed()
+          .setColor(0xe92134)
+          .setTitle(player_1.displayName + " versus " + player_2.displayName)
+        
         if (player_1.id == 822173127311884299)
         {
-            output += "**"  + player_1.displayName + "** strikes **" + player_2.displayName + "** for a godlike **" + 9999 + "** points. \n";
-            output += "**" + player_2.displayName + "** is defeated! **" + player_1.displayName + "** wins!";
+            battle_results.setDescription(output += "**"  + player_1.displayName + "** strikes **" + player_2.displayName + "** for a godlike **" + 9999 + "** points. \n**" + player_2.displayName + "** is defeated! **" + player_1.displayName + "** wins!");
         }
         else if (player_2.id == 822173127311884299)
         {
-            output += "**"  + player_2.displayName + "** strikes **" + player_1.displayName + "** for a godlike **" + 9999 + "** points. \n";
-            output += "**" + player_1.displayName + "** is defeated! **" + player_2.displayName + "** wins!";
+            battle_results.setDescription(output += "**"  + player_2.displayName + "** strikes **" + player_1.displayName + "** for a godlike **" + 9999 + "** points. \n**" + player_1.displayName + "** is defeated! **" + player_2.displayName + "** wins!");
         }
-        
-        message.channel.send(output).catch(console.error);
-        
+
+        message.channel.send({ embeds: [battle_results] }).catch(console.error);
         return;
     }
     
@@ -180,17 +182,19 @@ module.exports =
         turn++;
     }
 
-    if (output.length > 2000)
+    if (output.length > 4096)
     {
         message.channel.send("Unfortunately, the battle was far too mighty (long), and I failed to properly capture a way to send it in a way that wasn't terrible. Please try again.").catch(console.error);
-        //TODO: if message > 2000 send as file
+        //TODO: if message > 4096 send as file or something lmao
     }
     else
     {
-        console.log(output.length);
-        message.channel.send(output).catch(console.error);
+        const battle_results = new MessageEmbed()
+          .setColor(0xe92134)
+          .setTitle(player_1.displayName + " versus " + player_2.displayName)
+          .setDescription(output);
+
+        message.channel.send({ embeds: [battle_results] }).catch(console.error);
     }
   }
 };
-
-
