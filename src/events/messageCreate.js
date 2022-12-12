@@ -68,7 +68,7 @@ module.exports = (client, message) =>
       }
 
       // Execute command
-      console.log(`${message.author.tag} executed command: "${command}".`);
+      console.log(`${message.author.tag} executed command: "${message.content}".`);
       client.commands.get(command).execute(client, client_permissions, message, args);
     }
     catch (error)

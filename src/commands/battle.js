@@ -1,8 +1,24 @@
 const { MessageEmbed } = require("discord.js");
 const GetMemberFromArgument = require("../utilities/GetMemberFromArgument.js");
 
-const skip_moves = ["falls over and misses their turn!", "misses their attack!", "is so distracted by their opponent's charm that they forget to attack!", "tries making friends but to no avail!", "is too scared to attack!", "wants to give their opponent a chance, so does nothing.", "forgets to attack due to how stupid their opponent looks.", "is distracted by a butterfly."];
-const power_up_moves = ["prepares to make a powerful attack.", "readies their weapon for a powerful attack.", "prays to the heavens that their next attack will do more damage.", "covers their weapon in something really disgusting.", "gathers all of their might for their next attack."];
+const skip_moves = 
+[
+    "falls over and misses their turn!",
+    "misses their attack!",
+    "is so distracted by their opponent's charm that they forget to attack!",
+    "tries making friends but to no avail!", "is too scared to attack!",
+    "wants to give their opponent a chance, so does nothing.",
+    "forgets to attack due to how stupid their opponent looks.",
+    "is distracted by a butterfly."
+];
+const power_up_moves =
+[
+    "prepares to make a powerful attack.",
+    "readies their weapon for a powerful attack.",
+    "prays to the heavens that their next attack will do more damage.",
+    "covers their weapon in something really disgusting.",
+    "gathers all of their might for their next attack."
+];
 
 const base_damage = 15; // Out of 100
 
