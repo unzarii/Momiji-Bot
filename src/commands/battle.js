@@ -133,7 +133,7 @@ function NewTurn(message, attacker, defender)
                 `**${attacker.displayName}** covers their weapon in something really disgusting (cum).\n`,
                 `**${attacker.displayName}** covers their weapon with a deadly poison.\n`,
                 `**${attacker.displayName}** assumes an offensive stance.\n`,
-                `**${attacker.displayName}** spots a gap in **${defender.displayName}**'s defense.\n`,
+                `**${attacker.displayName}** spots a opening in **${defender.displayName}**'s defenses.\n`,
                 `**${attacker.displayName}** gathers all of their might for their next attack.\n`,
                 `**${attacker.displayName}** takes a deep breath, gathering their energy.\n`,
                 `**${attacker.displayName}** is now motivated!\n`,
