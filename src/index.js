@@ -106,9 +106,4 @@ fs.readdir("./src/commands/", (err, files) =>
 });
 
 // Automatically attempts to login via the token set via .env
-client.login(client.config.token).catch(error =>
-{
-    console.log(error);
-    console.log("Exiting Momiji Zone. Goodbye.");
-    process.exit;
-});
+client.login(client.config.token);
