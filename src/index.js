@@ -29,13 +29,7 @@ client.on(Events.Warn, w =>
 });
 
 // Login
-// I am begging that this actually prevents the program from hanging in PM2
-client.login(config.token).catch(error =>
-{
-    console.log(error);
-    console.log("Exiting Momiji Zone. Goodbye.");
-    process.exit;
-});
+client.login(config.token);
 
 // Store the commands
 client.commands = new Collection();
