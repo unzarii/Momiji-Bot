@@ -106,4 +106,4 @@ fs.readdir("./src/commands/", (err, files) =>
 });
 
 // Automatically attempts to login via the token set via .env
-client.login(client.config.token);
+client.login(client.config.token).catch(console.error);
