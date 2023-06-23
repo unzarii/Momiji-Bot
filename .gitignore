@@ -1,6 +1,8 @@
 #CONFIG / TRASH
 Invite Bot.url
+Invite Test Bot.url
 config.json
+.eslintrc.json
 
 #DEPENDENCIES
 node_modules

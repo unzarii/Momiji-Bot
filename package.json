@@ -1,0 +1,25 @@
+{
+  "name": "momiji-bot",
+  "version": "1.0.0",
+  "description": "A cute waifu bot.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unzarii/Momiji-Bot.git"
+  },
+  "author": "unzarii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unzarii/Momiji-Bot/issues"
+  },
+  "homepage": "https://github.com/unzarii/Momiji-Bot#readme",
+  "dependencies": {
+    "discord.js": "^14.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0"
+  }
+}
