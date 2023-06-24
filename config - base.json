@@ -1,6 +1,7 @@
 {
   "token": "",
-  "default_prefix": "m!",
+  "clientId": "",
+  "defaultPrefix": "m!",
   "owner": "",
   "vips": {
   }

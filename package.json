@@ -4,7 +4,8 @@
   "description": "A cute waifu bot.",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "deploy": "node src/deploy-commands.js"
   },
   "repository": {
     "type": "git",
