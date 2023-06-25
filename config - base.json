@@ -1,10 +1,7 @@
 {
   "token": "",
-  "default_prefix": "",
-  "host": "",
-  "user": "",
-  "password": "",
-  "database": "",
+  "clientId": "",
+  "defaultPrefix": "m!",
   "owner": "",
   "vips": {
   }

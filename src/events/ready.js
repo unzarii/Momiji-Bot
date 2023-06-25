@@ -1,6 +1,12 @@
-module.exports = () =>
-{
-  console.log("awooo~");
+const { Events } = require("discord.js");
 
-  // My poor ready event used as a slave to test the other events :pensive:
+module.exports =
+{
+    name: Events.ClientReady,
+    once: true,
+    execute(client)
+    {
+        console.log(`Awoo! Logged in as ${client.user.tag}`);
+        client.user.setActivity("awoo! | now with slash commands!");
+    },
 };
