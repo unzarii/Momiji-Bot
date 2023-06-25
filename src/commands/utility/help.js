@@ -7,7 +7,8 @@ module.exports =
     cooldown: 1,
     data: new SlashCommandBuilder()
         .setName("help")
-        .setDescription("Displays a list of the commands."),
+        .setDescription("Displays a list of the commands.")
+        .setDMPermission(false),
     async execute(interaction)
     {
         const helpEmbed = new EmbedBuilder()

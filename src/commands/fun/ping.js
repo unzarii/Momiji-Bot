@@ -5,7 +5,8 @@ module.exports =
     cooldown: 1,
     data: new SlashCommandBuilder()
         .setName("ping")
-        .setDescription("Ping?"),
+        .setDescription("Ping?")
+        .setDMPermission(false),
     async execute(interaction)
     {
         await interaction.reply("Pong!");

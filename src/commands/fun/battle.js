@@ -3,6 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 // Begging that you don't read this mess
 
 // TODO: This requires an entire rewrite to not be disgusting in how I'm editing parameters inside functions
+// TODO: Make this so you CAN battle yourself because it'd be funny... unless the buttons stops this.
 // I also think it'd be cool to make this an interactive experience via buttons instead of what it is now.
 
 // Out of 100
@@ -125,7 +126,7 @@ function NewTurn(attacker, defender)
     }
     else if (rand == 1)
     {
-        // Power up for a powerful attack (+10 then +10 again - max is 35)
+        // Power up for a powerful attack
 
         // Don't let them do this if they've already done it twice
         if (attacker.baseDamage >= baseDamage + boostDamage * 2)

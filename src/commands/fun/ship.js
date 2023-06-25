@@ -16,7 +16,8 @@ module.exports =
             option
                 .setName("second")
                 .setDescription("The second lover")
-                .setRequired(true)),
+                .setRequired(true))
+        .setDMPermission(false),
     async execute(interaction)
     {
         const lovers = [interaction.options.getString("first"), interaction.options.getString("second")];

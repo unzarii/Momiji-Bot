@@ -6,7 +6,8 @@ module.exports =
     cooldown: 1,
     data: new SlashCommandBuilder()
         .setName("headpat")
-        .setDescription("So comfy."),
+        .setDescription("So comfy.")
+        .setDMPermission(false),
     async execute(interaction)
     {
         await interaction.reply(`${GetRandomFace()}`);

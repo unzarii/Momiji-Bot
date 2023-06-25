@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionsBitField } = require("discord.js");
 
 module.exports =
 {
@@ -16,11 +16,11 @@ module.exports =
     {
         const message = interaction.options.getString("message");
 
-        const clientPermissions = interaction.channel.permissionsFor(interaction.client.user);
+        const clientPermissions = interaction.channel.permissionsFor(interaction.guild.members.me);
 
-        if (clientPermissions.has(PermissionFlagsBits.SendMessages))
+        if (clientPermissions.has(PermissionsBitField.Flags.SendMessages))
         {
-            interaction.channel.send(message);
+            interaction.channel.send(message).catch(console.error);
             await interaction.reply({ content: "Sent your message!", ephemeral: true });
         }
         else

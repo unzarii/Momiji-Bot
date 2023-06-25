@@ -14,7 +14,8 @@ module.exports =
         .addIntegerOption(option =>
             option.setName("max")
                 .setDescription("The highest number to roll to")
-                .setRequired(true)),
+                .setRequired(true))
+        .setDMPermission(false),
     async execute(interaction)
     {
         const max = interaction.options.getInteger("max");

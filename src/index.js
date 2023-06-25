@@ -1,18 +1,24 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const { Client, GatewayIntentBits, Partials, Collection } = require("discord.js");
 const config = require("../config.json");
 
 // TODO: Handle required permissions
 // - For example, /say requiring Send Messages
 
-const client = new Client({ intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildMembers,
-] });
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.DirectMessages],
+    partials: [
+        Partials.Message,
+        Partials.Channel,
+    ], // <-----------------------------------------------------------------------
+});
 
 // COMMAND HANDLER
 client.commands = new Collection();

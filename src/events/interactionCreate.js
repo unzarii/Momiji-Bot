@@ -59,7 +59,8 @@ module.exports =
 
         try
         {
-            console.log(`Executing ${command.data.name} command.`);
+            const timestamp = new Date();
+            console.log(`> [${timestamp.toUTCString()}] ${interaction.user.username} (${interaction.user.id}) executed "${command.data.name}" command in ${interaction.guild.name} (${interaction.guild.id}).`);
             await command.execute(interaction);
         }
         catch (error)
