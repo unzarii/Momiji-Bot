@@ -4,14 +4,9 @@ const path = require("node:path");
 const { Client, GatewayIntentBits, Collection } = require("discord.js");
 const config = require("../config.json");
 
-// TODO: There is the likelihood that I need to expand the intents.
-// TODO: I imagine this is where I'll set my presence again, unless something changed somewhere.
-// TODO: Handle missing permissions
+// TODO: Handle required permissions
+// - For example, /say requiring Send Messages
 
-// TODO: Wondering if I could do a async login loop that has a delay and that breaks out only when "ClientReady" says yes I'm ready!! via variable
-// If unhandledrejection is being caught then it shouldn't crash like usual...? Even if it does initially fail to connect...?
-
-// GatewayIntentBits is apparently necessary.
 const client = new Client({ intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
