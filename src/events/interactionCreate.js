@@ -79,34 +79,9 @@ module.exports =
 };
 
 /*
-FUNCTIONAL READY FOR NEXT STAGE MOSTLY
-battle      added
-info        added
-help        added
-headpat     added
-awoo        added
-ping        added
-say         added
-ship        added
-roll        added, needs enhancement
-
 CHECK THROUGH ALL OF THE OLD BOT'S EVENTS
 - Bully user if they DM the bot something that isn't a command
 - Haha STINKY handler
     - Ignore VIP or complement them
 - Autoresponse hell
-
-ENHANCEMENTS ZONE
-- Interactive battle command
-    - Use collectors (waiting for responses) to allow people to actually input commands
-    - Initial "challenge" that waits for 15s
-    - Each turn has several seconds before the battle is automatically forfeit
-
-- Occasional momiji simp requiring messages
-    - Random chance of Momiji message
-    - 15s to put a reaction on the message
-    - If no reaction, disappointment
-
-STRETCH
-Moderation commands - these will require permissions and probably a button prompt are you sure
 */

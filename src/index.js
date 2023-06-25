@@ -11,15 +11,6 @@ const config = require("../config.json");
 // TODO: Wondering if I could do a async login loop that has a delay and that breaks out only when "ClientReady" says yes I'm ready!! via variable
 // If unhandledrejection is being caught then it shouldn't crash like usual...? Even if it does initially fail to connect...?
 
-// TODO: Need handling for if the bot DOESN'T HAVE requisite base permissions
-// I assume I would put this in the command handler so that an error can pop up for the user if there are missing permissions etc.
-// For example:
-// - SEND MESSAGES
-// - CREATE COMMANDS
-// - CREATE EMBEDS
-// - Or just have different permissions per command
-// - Any meme functionality I have should have its own permissions set also
-
 // GatewayIntentBits is apparently necessary.
 const client = new Client({ intents: [
     GatewayIntentBits.Guilds,
