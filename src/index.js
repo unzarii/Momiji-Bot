@@ -21,10 +21,17 @@ const config = require("../config.json");
 // - Any meme functionality I have should have its own permissions set also
 
 // GatewayIntentBits is apparently necessary.
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
+] });
 
 // COMMAND HANDLER
 client.commands = new Collection();
+client.cooldowns = new Collection();
+
 const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);
 
