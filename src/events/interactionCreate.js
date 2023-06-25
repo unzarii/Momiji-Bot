@@ -6,6 +6,7 @@ module.exports =
     async execute(interaction)
     {
         // Avoid non-slash commands apparently
+        // FIXME: If I need to remove this for buttons etc.
         if (!interaction.isChatInputCommand()) return;
 
         // Check whether the command actually exists
@@ -77,11 +78,3 @@ module.exports =
         }
     },
 };
-
-/*
-CHECK THROUGH ALL OF THE OLD BOT'S EVENTS
-- Bully user if they DM the bot something that isn't a command
-- Haha STINKY handler
-    - Ignore VIP or complement them
-- Autoresponse hell
-*/

@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
-// TODO: If required, action rows and buttons could be useful for changing pages
+// If required, action rows and buttons could be useful for changing pages
 
 module.exports =
 {

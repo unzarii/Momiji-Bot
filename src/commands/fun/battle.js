@@ -1,5 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
+// Begging that you don't read this mess
+
 // TODO: This requires an entire rewrite to not be disgusting in how I'm editing parameters inside functions
 // I also think it'd be cool to make this an interactive experience via buttons instead of what it is now.
 

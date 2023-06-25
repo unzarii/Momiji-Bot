@@ -6,6 +6,5 @@ module.exports =
     execute(error)
     {
         console.log(error);
-        console.log("Just wondering if this works");
     },
 };

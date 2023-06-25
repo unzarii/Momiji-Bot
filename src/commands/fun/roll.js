@@ -5,11 +5,6 @@ const { SlashCommandBuilder } = require("discord.js");
 // roll d6/d8 etc
 // roll multi (and provide your own) etc
 
-// Maybe for roll multi I could do a single message that you can keep pressing buttons on to keep rolling dice
-// Rolled dice would just be edited into the message
-// Would need a timeout or perhaps I can just let it keep going if I like - maybe discord has its own timeout?
-// Check discordjs.guide
-
 module.exports =
 {
     cooldown: 1,

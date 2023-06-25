@@ -1,8 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
-// Permissions
-// bot NEEDS to have send message permissions
-
 module.exports =
 {
     cooldown: 1,
