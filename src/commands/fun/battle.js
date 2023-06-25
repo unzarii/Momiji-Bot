@@ -3,8 +3,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 // Begging that you don't read this mess
 
 // TODO: This requires an entire rewrite to not be disgusting in how I'm editing parameters inside functions
-// TODO: Make this so you CAN battle yourself because it'd be funny... unless the buttons stops this.
-// I also think it'd be cool to make this an interactive experience via buttons instead of what it is now.
+// - Make this so you CAN battle yourself because it'd be funny... unless the buttons stops this.
+//     - I also think it'd be cool to make this an interactive experience via buttons instead of what it is now.
+// - Make this only occur if the players are user/member resolvable, so that the battle can take place between strings as well as users.
+//     - I would need to remove "displayName" from basically everywhere though lmao.
 
 // Out of 100
 const baseDamage = 15;
@@ -131,7 +133,6 @@ function NewTurn(attacker, defender)
         // Don't let them do this if they've already done it twice
         if (attacker.baseDamage >= baseDamage + boostDamage * 2)
         {
-            // TODO: Add variance
             output = `**${attacker.displayName}** tries to power up even further, but is already at their limit!\n`;
         }
         else
@@ -202,9 +203,6 @@ module.exports =
         player2.hp = 150;
 
         let output = "";
-
-        // TODO: Make this only occur if the players are user/member resolvable, so that the battle can take place between strings as well as users.
-        // I would need to remove "displayName" from basically everywhere though lmao.
 
         // Destroy non-believers (don't battle Momiji!!!)
         if (player1.id === interaction.client.user.id || player2.id === interaction.client.user.id)

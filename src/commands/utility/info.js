@@ -39,7 +39,7 @@ module.exports =
                         name: "Joined At:", value: member.joinedAt.toUTCString(),
                     },
                     {
-                        name: "A Member For:", value: memberLengthString,
+                        name: "Member For:", value: memberLengthString,
                     },
                     {
                         name: "Created At:", value: member.user.createdAt.toUTCString(),
