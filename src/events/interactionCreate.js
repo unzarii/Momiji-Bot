@@ -46,7 +46,7 @@ module.exports =
             if (now < expirationTime)
             {
                 const expiredTimestamp = Math.round(expirationTime / 1000);
-                return interaction.reply({ content: `Chill out!!!! You can try "${command.data.name}" again <t:${expiredTimestamp}:R>!!!!!`, ephemeral: true });
+                return interaction.reply({ content: `Chill out!!!! You can try "${command.data.name}" again <t:${expiredTimestamp}:R>!!!!! (｡•́︿•̀｡)`, ephemeral: true });
             }
         }
 

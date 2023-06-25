@@ -65,24 +65,40 @@ module.exports =
             }
             else if (messageLowercase === "roman")
             {
-                message.reply({
-                    files: [{
-                        attachment: "src/assets/roman.jpg",
-                        name: "roman.jpg",
-                        description: "Roman",
-                    }],
-                }).catch(console.error);
+                if (clientPermissions.has(PermissionsBitField.Flags.AttachFiles))
+                {
+                    message.reply({
+                        files: [{
+                            attachment: "src/assets/roman.jpg",
+                            name: "roman.jpg",
+                            description: "Roman",
+                        }],
+                    }).catch(console.error);
+                }
+                else
+                {
+                    message.reply("I want to send the funny image but I don't have the Attach Files permission (｡•́︿•̀｡)").catch(console.error);
+                }
+
                 return;
             }
             else if (messageLowercase === "master chief, mind telling me what you're doing in that mcdonald's?")
             {
-                message.reply({
-                    files: [{
-                        attachment: "src/assets/masterchief.jpg",
-                        name: "masterchief.jpg",
-                        description: "Master Chief enjoying a Big Mac",
-                    }],
-                }).catch(console.error);
+                if (clientPermissions.has(PermissionsBitField.Flags.AttachFiles))
+                {
+                    message.reply({
+                        files: [{
+                            attachment: "src/assets/masterchief.jpg",
+                            name: "masterchief.jpg",
+                            description: "Master Chief enjoying a Big Mac",
+                        }],
+                    }).catch(console.error);
+                }
+                else
+                {
+                    message.reply("I want to send the funny image but I don't have the Attach Files permission (｡•́︿•̀｡)").catch(console.error);
+                }
+
                 return;
             }
 
