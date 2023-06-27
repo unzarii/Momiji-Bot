@@ -15,7 +15,7 @@ Yet another bot, this time in the theme of a popular Touhou character
 
 # How to host
 - run "npm run deploy" to deploy slash commands (once)
-- run "npm run initDb" to create database (once)
+- run "npm run dbInit" to create database (once)
 - run "npm run start" to run Momiji
 - Highly suggest pm2 for Linux.
 
