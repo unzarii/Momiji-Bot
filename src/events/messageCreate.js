@@ -1,11 +1,12 @@
-const { Events, PermissionsBitField } = require("discord.js");
+const { Events, PermissionFlagsBits } = require("discord.js");
 const config = require("../../config.json");
 const GetRandomFace = require("../helpers/GetRandomFace.js");
+const { Op } = require("sequelize");
 
 module.exports =
 {
     name: Events.MessageCreate,
-    execute(message)
+    async execute(message)
     {
         if (message.author.bot === true)
         {
@@ -29,43 +30,20 @@ module.exports =
         }
 
         // The following can only occur if the message is inside a server.
-
+        // Ensure that the bot has send messages permissions
         const clientPermissions = message.channel.permissionsFor(message.guild.members.me);
 
-        if (clientPermissions.has(PermissionsBitField.Flags.SendMessages))
+        if (clientPermissions.has(PermissionFlagsBits.SendMessages))
         {
             /* --------------------------------
-            -------- Autoresponse HELL --------
+            --------- Easter Egg HELL ---------
             -------------------------------- */
 
             const messageLowercase = message.content.toLowerCase();
 
-            // List of possible "I'm" permutations
-            const imArray = ["i'm", "im", "i am"];
-
-            if (imArray.includes(messageLowercase))
+            if (messageLowercase === "roman")
             {
-                message.reply("stinky").catch(console.error);
-                return;
-            }
-            else if (messageLowercase === "ye :)")
-            {
-                message.reply("ye :)").catch(console.error);
-                return;
-            }
-            else if (messageLowercase === "ye (:")
-            {
-                message.reply("ye (:").catch(console.error);
-                return;
-            }
-            else if (messageLowercase === "ye")
-            {
-                message.reply("ye").catch(console.error);
-                return;
-            }
-            else if (messageLowercase === "roman")
-            {
-                if (clientPermissions.has(PermissionsBitField.Flags.AttachFiles))
+                if (clientPermissions.has(PermissionFlagsBits.AttachFiles))
                 {
                     message.reply({
                         files: [{
@@ -84,7 +62,7 @@ module.exports =
             }
             else if (messageLowercase === "master chief, mind telling me what you're doing in that mcdonald's?")
             {
-                if (clientPermissions.has(PermissionsBitField.Flags.AttachFiles))
+                if (clientPermissions.has(PermissionFlagsBits.AttachFiles))
                 {
                     message.reply({
                         files: [{
@@ -98,6 +76,28 @@ module.exports =
                 {
                     message.reply("I want to send the funny image but I don't have the Attach Files permission (｡•́︿•̀｡)").catch(console.error);
                 }
+
+                return;
+            }
+
+            /* --------------------------------
+            ------- Database Responses --------
+            -------------------------------- */
+
+            const response = await message.client.db.Response.findOne({
+                where:
+                {
+                    guildID: message.guild.id,
+                    trigger:
+                    {
+                        [Op.like]: message.content,
+                    },
+                },
+            });
+
+            if (response)
+            {
+                message.reply(response.get("response")).catch(console.error);
 
                 return;
             }

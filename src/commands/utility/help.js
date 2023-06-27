@@ -17,14 +17,6 @@ module.exports =
             .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
             .addFields(
                 {
-                    name: "Utility",
-                    value:
-                    `**/help**
-                    *Displays a list of the commands.*
-                    **/info**
-                    *Get information about a server member or the server*`,
-                },
-                {
                     name: "Fun",
                     value:
                     `**/awoo**
@@ -41,6 +33,21 @@ module.exports =
                     *Sends a message as Momiji.*
                     **/ship**
                     *Ships two members ♥*`,
+                },
+                {
+                    name: "Utility",
+                    value:
+                    `**/help**
+                    *Displays a list of the commands.*
+                    **/info**
+                    *Get information about a server member or the server*`,
+                },
+                {
+                    name: "Moderators Only",
+                    value:
+                    `**/response**
+                    *Create, view, edit or delete responses.*
+                    *(Requires "Manage Server" by default)*`,
                 },
                 {
                     name: "Other",

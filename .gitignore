@@ -3,6 +3,8 @@ Invite Bot.url
 Invite Test Bot.url
 config.json
 .eslintrc.json
+test.js
+database.sqlite
 
 #DEPENDENCIES
 node_modules

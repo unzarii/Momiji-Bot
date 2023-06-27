@@ -4,9 +4,6 @@ const path = require("node:path");
 const { Client, GatewayIntentBits, Partials, Collection } = require("discord.js");
 const config = require("../config.json");
 
-// TODO: Handle required permissions
-// - For example, /say requiring Send Messages
-
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -17,8 +14,15 @@ const client = new Client({
     partials: [
         Partials.Message,
         Partials.Channel,
-    ], // <-----------------------------------------------------------------------
+    ],
 });
+
+// This is how we access sequelize (which is now connected via this) and our tables/models
+// It executes the file then passes the tables/models through.
+
+//  Add the tables as properties to the client
+// I am sure there is a better way to do this but I've bled out of my eyes
+client.db = require("./dbObjects");
 
 // COMMAND HANDLER
 client.commands = new Collection();
@@ -70,7 +74,10 @@ for (const file of eventFiles)
     }
 }
 
-// Instant loss
+// This is the "uh oh bad shit happened just give up" section of my code
+// TODO: Figure out some way of retrying
+// For now, as long as things are perfect, nothing bad should happen UwU
+
 process.on("unhandledRejection", error =>
 {
     console.log(error);
@@ -78,5 +85,10 @@ process.on("unhandledRejection", error =>
     process.exit(1);
 });
 
-// TODO: Fuck knows  how to handle if I cannot initially get a connection
-client.login(config.token);
+client.login(config.token)
+    .catch(error =>
+    {
+        console.error("Couldn't login!", error);
+        process.exit(1);
+    });
+

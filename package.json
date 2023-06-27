@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "deploy": "node src/deploy-commands.js"
+    "deploy": "node src/deployCommands.js",
+    "initDb": "node src/DbInit.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,9 @@
   "dependencies": {
     "discord.js": "^14.11.0",
     "moment": "^2.29.4",
-    "seedrandom": "^3.0.5"
+    "seedrandom": "^3.0.5",
+    "sequelize": "^6.32.1",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "eslint": "^8.43.0"
