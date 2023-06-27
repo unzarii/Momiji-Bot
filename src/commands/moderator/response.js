@@ -10,7 +10,7 @@ module.exports =
         .addSubcommand(subcommand =>
             subcommand
                 .setName("create")
-                .setDescription("Create an response")
+                .setDescription("Create a response")
                 .addStringOption(option =>
                     option
                         .setName("trigger")
@@ -28,7 +28,7 @@ module.exports =
         .addSubcommand(subcommand =>
             subcommand
                 .setName("edit")
-                .setDescription("Edit an response")
+                .setDescription("Edit a response")
                 .addStringOption(option =>
                     option
                         .setName("trigger")

@@ -25,8 +25,6 @@ module.exports =
                     *Initiates a battle between two players!*
                     **/headpat**
                     *So comfy.*
-                    **/ping**
-                    *Ping?*
                     **/roll**
                     *Rolls a random number.*
                     **/say**
@@ -40,7 +38,9 @@ module.exports =
                     `**/help**
                     *Displays a list of the commands.*
                     **/info**
-                    *Get information about a server member or the server*`,
+                    *Get information about a server member or the server*
+                    **/ping**
+                    *Ping?*`,
                 },
                 {
                     name: "Moderators Only",
