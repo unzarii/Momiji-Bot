@@ -1,4 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, Util } = require("discord.js");
+const SplitString = require("../../helpers/splitString");
 
 module.exports =
 {
@@ -96,20 +97,32 @@ module.exports =
 
                 responseList.map(response =>
                 {
-                    responseString += `${response.trigger} : ${response.response}\n`;
+                    responseString += `**${response.trigger}**: ${response.response}\n`;
                 });
+
+                // TODO: Should probably turn this into a function so Help can use it as well
+                // Return array of embeds I should imagine
+
+                const [first, ...rest] = SplitString(responseString, 4096, "\n");
 
                 const responseEmbed = new EmbedBuilder()
                     .setColor(0xe92134)
                     .setTitle(`All Responses for ${interaction.guild.name}`)
-                    .addFields(
-                        {
-                            name: "Responses",
-                            value: responseString || "No responses available.",
-                        },
-                    );
+                    .setDescription(first || "No responses available.");
 
-                return interaction.reply({ embeds: [responseEmbed] });
+                // Send the first embed
+                await interaction.reply({ embeds: [responseEmbed] });
+
+                // If there are any more, send them
+                if (rest.length)
+                {
+                    rest.forEach(async text =>
+                    {
+                        console.log(text);
+                        responseEmbed.setDescription(text);
+                        await interaction.followUp({ embeds: [responseEmbed] });
+                    });
+                }
             }
             catch (error)
             {
