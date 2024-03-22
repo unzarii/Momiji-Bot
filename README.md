@@ -11,11 +11,10 @@ Yet another bot, this time in the theme of a popular Touhou character
 
 # Before You Run
 - You will need to configure the bot via "config - base.json". Rename the file to "config.json" when you are finished.
-- Run Deploy Commands.bat
 
 # How to host
 - run "npm run deploy" to deploy slash commands (once)
 - run "npm run dbInit" to create database (once)
-- run "npm run start" to run Momiji
+- run "npm run start" to run Momiji (or use "Run Momiji Bot.bat"). On Windows, if you have Nodemon, you can use "Run Momiji Bot Nodemon.bat".
 - Highly suggest pm2 for Linux.
 

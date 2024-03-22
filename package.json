@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "deploy": "node src/deployCommands.js",
-    "dbInit": "node src/dbInit.js"
+    "dbInit": "node src/dbInit.js",
+    "nodemon": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
